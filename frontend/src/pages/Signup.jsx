@@ -6,7 +6,7 @@ function Signup() {
     const [showPassword1, setShowPassword1] = useState(false);
     return (
         <div className='h-screen w-screen flex justify-center items-center'>
-            <div className='w-10/12 h-9/12 sm:h-8/12 sm:w-6/12 md:h-8/12 md:w-6/12 lg:h-8/12 lg:w-3/12 border-4 rounded-[5px] p-2 flex flex-col '>
+            <div className='w-10/12 h-9/12 sm:h-8/12 sm:w-6/12 md:h-8/12 md:w-6/12 lg:h-7/12 lg:w-3/12 border-4 rounded-[5px] p-2 flex flex-col '>
                 <div className="basis-18 flex justify-center my-4">
                     <label className='font-bold font-inria text-5xl' style={{ fontFamily: "'Inria Sans', sans-serif" }}> Registartion </label>
                 </div>
@@ -30,7 +30,10 @@ function Signup() {
                         </div>
                     </div>
                     <div className=" basis-18  mx-4 my-0.5 flex justify-center items-center ">
-                        <input type="file" name="" className='h-11/12 w-12/12 outline-0 border-4 py-4 px-2 border-gray-400 rounded-md' />
+                        <select type="file" name="" className='h-11/12 w-12/12 outline-0 border-4 py-4 px-2 border-gray-400 rounded-md' >
+                          <option value="Customer">Customer</option>
+                          <option value="Vendor">Vendor</option>
+                        </select>
                     </div>
                     <div className=" basis-15  mx-4 my-0.5 flex justify-center items-center gap-3">
                         <button type="button" name="" className=' h-10/12 w-12/12 px-7 bg-[#42D940] text-white font-bold outline-0 text-lg rounded-md active:scale-98' placeholder='Enter Name' >Register now</button>
