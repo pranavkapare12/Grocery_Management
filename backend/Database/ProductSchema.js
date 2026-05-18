@@ -1,5 +1,5 @@
 import mongoose, { Schema } from "mongoose"
-const Schema = new Schema({
+const ProductSchema = new Schema({
     public_id:{
         type:String,
         require:true
@@ -22,5 +22,5 @@ const Schema = new Schema({
     }
 },{timestamp:true})
 
-const Product = mongoose.model("Product",Schema,"Products");
+const Product = mongoose.model("Product",ProductSchema,"Products");
 export default Product;
