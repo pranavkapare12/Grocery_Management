@@ -18,7 +18,7 @@ function Login() {
         }
 
         try {
-            const res =await axios.post("http://localhost:3000/auth/login",loginData);
+            const res =await axios.post("http://localhost:3000/auth/login",loginData, {withCredentials: true});
             toast.success("LOGIN SUCCESSFULL");   
         } catch (error) {
             if (error.response)

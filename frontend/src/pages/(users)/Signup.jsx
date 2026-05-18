@@ -34,7 +34,7 @@ function Signup() {
             type:userData.type
         }
         try {
-            let res = await axios.post("http://localhost:3000/auth/signup",finalData);
+            let res = await axios.post("http://localhost:3000/auth/signup",finalData,{withCredentials: true});
             toast.success("ACCOUNTED CREATED");
         } catch (error) {
             toast.error(error.response?.data?.message)

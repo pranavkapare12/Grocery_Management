@@ -12,9 +12,23 @@ const ProductSchema = new Schema({
         type:String,
         required:true
     },
+    description:{
+        type:String
+    },
     price:{
         type:Number,
         require:true
+    },
+    stock:{
+        type:Number,
+        require:true
+    },
+    category:{
+        type:String,
+        require:true
+    },
+    brand:{
+        type:String
     },
     user_id:{
         type:String,

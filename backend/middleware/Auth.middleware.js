@@ -4,6 +4,7 @@ import mongoDb from "../Database/DbConnection.js";
 import User from "../Database/UserSchema.js";
 const authMiddleware =async (req,res,next) =>{
     const token = req.cookies.Grocery_User;
+    console.log(token)
     if(!token){
         return res.status(401).json({
             "message":"Unauthrized Access"
