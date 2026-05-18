@@ -1,7 +1,7 @@
 import react from 'react';
-import Navbar from '../components/Navbar'
-import Footer from '../components/Footer';
-import WishListCard from '../components/WishListCard';
+import Navbar from '../../components/Navbar'
+import Footer from '../../components/Footer';
+import WishListCard from '../../components/WishListCard';
 function Wishlist() {
     return (
         <div className=' w-screen h-screen' style={{ fontFamily: "'Inria Sans', sans-serif" }}>

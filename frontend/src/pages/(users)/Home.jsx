@@ -1,7 +1,7 @@
 import react from 'react';
-import Navbar from '../components/Navbar'
-import Footer from '../components/Footer';
-import NavigationCard from '../components/NavigationCard';
+import Navbar from '../../components/Navbar'
+import Footer from '../../components/Footer';
+import NavigationCard from '../../components/NavigationCard';
 function Home(){
     return(
         <div className='h-screen w-screen'>

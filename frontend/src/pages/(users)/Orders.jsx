@@ -1,6 +1,6 @@
 import react from 'react';
-import Navbar from '../components/Navbar'
-import Footer from '../components/Footer'
+import Navbar from '../../components/Navbar'
+import Footer from '../../components/Footer'
 
 function orderTemplate(props) {
     var classlg = 'lg:w-11/12 bg-amber-300'

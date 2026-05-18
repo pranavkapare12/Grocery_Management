@@ -1,7 +1,7 @@
 import react from 'react';
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
-import CartCard from '../components/CartCard';
+import Navbar from '../../components/Navbar';
+import Footer from '../../components/Footer';
+import CartCard from '../../components/CartCard';
 import { useNavigate } from 'react-router-dom';
 function Cart() {
     const navigate = useNavigate();

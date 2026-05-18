@@ -1,7 +1,7 @@
 import react,{useState} from 'react';
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
-import ShopCard from '../components/ShopCard';
+import Navbar from '../../components/Navbar';
+import Footer from '../../components/Footer';
+import ShopCard from '../../components/ShopCard';
 function Shop(){
     const [product , setProduct] = useState({
         name : "Apple",

@@ -1,7 +1,7 @@
 import react from 'react';
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
-import { getLocation } from '../CurrenetLocation/cu';
+import Navbar from '../../components/Navbar';
+import Footer from '../../components/Footer';
+import { getLocation } from '../../CurrenetLocation/cu';
 function FinalOrder() {
 
     const submitOrder = () => {
