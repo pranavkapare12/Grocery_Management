@@ -20,7 +20,7 @@ const ProductSchema = new Schema({
         type:String,
         require:true
     }
-},{timestamp:true})
+},{ timestamps:true })
 
 const Product = mongoose.model("Product",ProductSchema,"Products");
 export default Product;
