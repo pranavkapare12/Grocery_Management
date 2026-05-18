@@ -18,7 +18,7 @@ async function uplode(filename,imagePath) {
     try{
         const result =await cloudinary.uploader.upload(imagePath,option);
         // console.log(result);
-        return result.public_id;
+        return result;
     }catch(error){
         console.log(error)
     }
