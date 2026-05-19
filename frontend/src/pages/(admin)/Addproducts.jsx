@@ -4,6 +4,7 @@ import toast,{Toaster} from "react-hot-toast";
 
 function Addproducts() {
 
+    const [isloading,setloading]=useState(false);
     const [product,setProduct]=useState({
         name:"",
         description:"",
@@ -15,16 +16,37 @@ function Addproducts() {
     })
 
     async function onAdd(){
-        const result =await axios.post("http://localhost:3000/file/uplode",product,{withCredentials: true});
+        const formData =new FormData();
+        if(product.name == "" || product.description == "" || product.price == 0 || product.stock == 0 || product.category == "" || product.Brand == "" || product.file == ""){
+            toast.error("All fields are required");
+            return;
+        }
+
+        formData.append("name",product.name);
+        formData.append("description",product.description);
+        formData.append("price",product.price);
+        formData.append("stock",product.stock);
+        formData.append("category",product.category);
+        formData.append("brand",product.Brand);
+        formData.append("image",product.file)
+        let result;
         try{
-            if(result){
+            setloading(true);
+            result =await axios.post("http://localhost:3000/file/uplode",formData,{withCredentials: true});
+            if(result.status === 200){
                 toast.success("Product Added Successfully")
             }
         }catch(error){
-            console.log("Error")
-            toast.error("Failed to add product")
-            console.log(error)
+            console.log(result)
+            toast.error("Failed to add products")
         }
+        finally{
+            setloading(false);
+        }
+    }
+
+    function resetField(){
+        setProduct({name:""})
     }
 
     return (
@@ -91,8 +113,15 @@ function Addproducts() {
                 <div className=" flex flex-row justify-between gap-x-4 h-10 px-30">
                     <button className="flex-1 bg-[#42D940] text-xl font-mono text-white rounded-[5px] active:scale-95"
                     onClick={onAdd}
-                    >Add</button>
-                    <button className="flex-1 bg-[#42D940] text-xl font-mono text-white rounded-[5px] active:scale-95">Reset</button>
+                    >
+                    {isloading ? "Uploding" : "Add"}
+                    </button>
+                    <button 
+                    className="flex-1 bg-[#42D940] text-xl font-mono text-white rounded-[5px] active:scale-95"
+                    onClick={resetField}
+                    >
+                        Reset
+                    </button>
                 </div>
             </div>
             <input type="file"
