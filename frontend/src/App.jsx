@@ -15,11 +15,18 @@ import Search from './pages/(users)/Search'
 
 // Admin Pages
 import Addproducts from './pages/(admin)/Addproducts'
-
+// React Dom Properties
 import { Route, Routes } from 'react-router-dom'
 
-function App() {
+// USER DATA STORAGE
+import { useContext ,useState ,useEffect } from 'react'
 
+// AuthContext
+import { AuthContext } from './context/AuthProvider'
+
+function App() {
+  const {user,setUser} = useContext(AuthContext);
+  
   return (
     <>
     <div className='w-screen h-screen'>

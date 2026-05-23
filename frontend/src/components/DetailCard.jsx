@@ -2,7 +2,7 @@ import React,{useState} from "react";
 import { X ,IndianRupee} from 'lucide-react'
 
 function DetailCard(props) {
-    console.log(props);
+    // console.log(props);
     const {product,setProduct} = props;
     return (
         <div className=" bg-[#ffffff] w-full h-auto sm:w-3xl sm:h-8/12 md:w-7/12 lg:w-2/12 flex flex-col rounded-xl border " >
@@ -12,7 +12,7 @@ function DetailCard(props) {
                     <div className=" w-10 h-10 flex justify-center items-center cursor-pointer" onClick={() => props.setDetail(null)}><X /></div>
                 </div>
                 <div className=" flex-6 flex flex-col  items-center ">
-                    <img src="apple.png" alt="" srcset="" className=" h-50 w-50" />
+                    <img src="apple.png" alt="" className=" h-50 w-50" />
                     <div className="w-full flex items-center justify-center px-10 mt-20 ">
                         <label className=" text-xs font-bold">Apple</label>
                         <label className=" text-xs font-bold">(per kg)</label>

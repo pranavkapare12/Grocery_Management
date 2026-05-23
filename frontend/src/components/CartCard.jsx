@@ -10,7 +10,7 @@ function CartCard(props) {
                     <div className=" w-10 h-10 flex justify-center items-center cursor-pointer" onClick={() => props.setDetail(null)}><X /></div>
                 </div>
                 <div className=" flex-6 flex flex-col  items-center ">
-                    <img src="apple.png" alt="" srcset="" className=" h-50 w-50" />
+                    <img src="apple.png" alt="" className=" h-50 w-50" />
                     <div className="w-full flex items-center justify-center px-10 mt-20 ">
                         <label className=" text-xl font-bold">Apple</label>
                         <label className=" text-xl font-bold">(per kg)</label>

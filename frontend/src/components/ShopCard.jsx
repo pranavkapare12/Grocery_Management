@@ -19,7 +19,7 @@ function ShopCard(props) {
                     </div>
                 </div>
                 <div className=" flex flex-col  items-center ">
-                    <img src="apple.png" alt="" srcset="" className=" h-50 w-50" />
+                    <img src="apple.png" alt="" className=" h-50 w-50" />
                     <div className="w-full flex items-center justify-center px-10 ">
                         <label className=" text-xl font-bold">Apple</label>
                         <label className=" text-xl font-bold">(per kg)</label>

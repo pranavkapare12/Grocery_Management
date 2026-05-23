@@ -8,7 +8,7 @@ function WishListCard(){
                     <div className=" text-xl font-bold flex items-center gap-y-2 bg-red-500 px-4 py-2 text-white rounded-xl"><label className="font-semibold text-xl">50</label> <IndianRupee size={20} /></div>
                 </div>
                 <div className=" flex-5 flex flex-col  items-center ">
-                    <img src="apple.png" alt="" srcset="" className=" h-50 w-50" />
+                    <img src="apple.png" alt="" className=" h-50 w-50" />
                     <div className="w-full flex items-center justify-center px-10 mt-20 ">
                         <label className=" text-xl font-bold">Apple</label>
                         <label className=" text-xl font-bold">(per kg)</label>
