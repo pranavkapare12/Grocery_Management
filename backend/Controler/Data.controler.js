@@ -18,7 +18,7 @@ async function getData(req,res){
         });
         return res.status(200).json({
             userData: req.userData,
-            data : result
+            products : result
         })
     }
     

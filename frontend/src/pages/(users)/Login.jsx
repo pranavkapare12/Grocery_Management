@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import toast,{Toaster} from 'react-hot-toast'
 import axios from 'axios'
 
-function Login() {
+function Login(props) {
     const [showPassword, setShowPassword] = useState(false);
     const [loginData,setLoginData] = useState({
         email:"",
