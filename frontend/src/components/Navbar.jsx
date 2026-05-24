@@ -44,11 +44,11 @@ function Navbar() {
                         <Link to="/aboutus" className="">About</Link>
                         <Link to="/contactus" className="">Contact Us</Link>
                     </>
-                        : <>
-                        <Link to="/addproduct" className=" focus:border-b-4">Add Product</Link>
-                        <Link to="/updateproduct" className=" focus:border-b-4">Update</Link>
-                        <Link to="/deleteproduct" className=" focus:border-b-4">Delete</Link>
-                        </>
+                        : user?.user?.type == "Vendor" ? <>
+                            <Link to="/addproduct" className=" focus:border-b-4">Add Product</Link>
+                            <Link to="/updateproduct" className=" focus:border-b-4">Update</Link>
+                            <Link to="/deleteproduct" className=" focus:border-b-4">Delete</Link>
+                        </> : ""
                 }
 
             </div>
@@ -69,9 +69,12 @@ function Navbar() {
 
                     </> : ""
                 }
-                <button className='bg-blue-500 px-2 py-1 rounded-2xl text-white font-mono border-0 active:scale-90' onClick={logout}>
-                    Logout
-                </button>
+
+                {
+                    user?.user ? <button className='bg-blue-500 px-2 py-1 rounded-2xl text-white font-mono border-0 active:scale-90' onClick={logout}>
+                        Logout
+                    </button> : ""
+                }
             </div>
         </div>
     )

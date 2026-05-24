@@ -55,7 +55,6 @@ function orderTemplate(props) {
 function Orders() {
     return (
         <div className=' w-screen h-screen' style={{ fontFamily: "'Inria Sans', sans-serif" }}>
-            <Navbar />
             <div className=' w-full mt-5 flex justify-center place-items-center'>
                 <label className='text-2xl font-bold'>Orders Page</label>
             </div>
