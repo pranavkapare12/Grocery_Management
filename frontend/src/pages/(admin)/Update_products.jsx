@@ -16,7 +16,7 @@ function UpdateProducts() {
         file:""
     })
 
-    async function onAdd(){
+    async function onUpdate(){
         const formData =new FormData();
         if(product.name == "" || product.description == "" || product.price == 0 || product.stock == 0 || product.category == "" || product.Brand == "" || product.file == ""){
             toast.error("All fields are required");
@@ -55,7 +55,7 @@ function UpdateProducts() {
             <Toaster />
             <div className="w-3/12 h-auto flex flex-col gap-y-4 border-[3px]  rounded-xl py-5">
                 <div className="w-full flex place-items-center justify-center">
-                    <label htmlFor="" className=" text-4xl font-bold">Product Details</label>
+                    <label htmlFor="" className="text-3xl font-bold">Update Product Details</label>
                 </div>
                 <div className=" flex flex-col justify-center gap-y-4 px-25">
                     <input type="text" 
@@ -113,10 +113,10 @@ function UpdateProducts() {
                 </div>
                 <div className=" flex flex-row justify-between gap-x-4 h-10 px-30">
                     <button className="flex-1 bg-[#42D940] text-xl font-mono text-white rounded-[5px] active:scale-95"
-                    onClick={onAdd}
+                    onClick={onUpdate}
                     disabled
                     >
-                    {isloading ? "Uploding" : "Add"}
+                    {isloading ? "Updating..." : "Update"}
                     </button>
                     <button 
                     className="flex-1 bg-[#42D940] text-xl font-mono text-white rounded-[5px] active:scale-95"
