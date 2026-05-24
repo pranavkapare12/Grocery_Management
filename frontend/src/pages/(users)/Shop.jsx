@@ -16,7 +16,6 @@ function Shop(){
     }
     return(
         <div className=' w-screen h-screen' style={{ fontFamily: "'Inria Sans', sans-serif" }}>
-            <Navbar />
             <div className="flex flex-col w-full h-full place-items-center relative">
                 <div className='w-full h-15 flex flex-row justify-center place-items-center gap-2 sm:gap-10 my-4'>
                     <label className=" bg-[#D9D9D9] py-4 px-7 border-2 border-black rounded-[3px] active:scale-95 cursor-pointer">VEGITABLES</label>

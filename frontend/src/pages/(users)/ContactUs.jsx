@@ -4,7 +4,6 @@ import Footer from '../../components/Footer';
 function ContactUs() {
     return (
         <div className=' w-screen h-screen'>
-            <Navbar />
             <div className="w-full h-full flex flex-col" style={{ fontFamily: "'Inria Sans', sans-serif" }}>
                 <div className=" w-full basis-20 flex justify-center place-items-center font-bold text-2xl"><label>GET IN TOUCH</label></div>
                 <div className=" w-full  flex justify-center rounded-[5px] ">

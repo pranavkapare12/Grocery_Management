@@ -5,7 +5,6 @@ import WishListCard from '../../components/WishListCard';
 function Wishlist() {
     return (
         <div className=' w-screen h-screen' style={{ fontFamily: "'Inria Sans', sans-serif" }}>
-            <Navbar />
             <div className='w-full flex items-center justify-center my-5'><label className='text-2xl font-semibold'>PRODUCTS ADDED</label></div>
             <div className="flex flex-row flex-wrap justify-center gap-x-10 gap-y-5 w-full h-auto overflow-scroll px-10">
                 <WishListCard />

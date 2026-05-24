@@ -1,10 +1,12 @@
-import react,{useState} from 'react';
+import react,{useState,useContext} from 'react';
 import { Eye ,EyeOff } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import toast,{Toaster} from 'react-hot-toast'
+import { AuthContext } from '../../context/AuthProvider';
 import axios from 'axios'
 
 function Login(props) {
+    const {user,setUser} = useContext(AuthContext)
     const [showPassword, setShowPassword] = useState(false);
     const [loginData,setLoginData] = useState({
         email:"",
@@ -16,7 +18,7 @@ function Login(props) {
             toast.error("ALL FIELDS ARE REQUIRED")
             return;
         }
-
+// TODO ADD useState and useContext hook
         try {
             const res =await axios.post("http://localhost:3000/auth/login",loginData, {withCredentials: true});
             toast.success("LOGIN SUCCESSFULL");   

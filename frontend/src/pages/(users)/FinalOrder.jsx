@@ -9,7 +9,6 @@ function FinalOrder() {
     }
     return (
         <div className=' w-screen h-screen' style={{ fontFamily: "'Inria Sans', sans-serif" }}>
-            <Navbar />
             <div className="flex w-full justify-center place-items-center text-2xl font-bold px-2 sm:px-10 md:px-10 lg:px-20 my-3">
                 <div className="flex-1 flex flex-col flex-wrap justify-center border p-4">
                     <div className="flex-1 flex justify-center items-center bg-black p-3">

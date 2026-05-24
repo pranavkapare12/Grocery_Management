@@ -5,7 +5,6 @@ import NavigationCard from '../../components/NavigationCard';
 function Home(){
     return(
         <div className='h-screen w-screen'>
-            <Navbar />
             <div className='w-full h-11/12 flex flex-col' style={{ fontFamily: "'Inria Sans', sans-serif" }}>
                 <div className='w-full h-7/12 bg-[#E9E9E9] p-10'>
                  <div className='flex flex-col gap-4 '>

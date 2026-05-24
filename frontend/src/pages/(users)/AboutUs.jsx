@@ -5,7 +5,6 @@ import {Link} from 'react-router-dom';
 function AboutUs() {
     return (
         <div className='w-screen h-screen flex flex-col' style={{ fontFamily: "'Inria Sans', sans-serif" }}>
-            <Navbar />
             <div className="w-full h-full flex flex-row flex-wrap justify-center gap-20 p-5 overflow-scroll">
                 <div className=" basis-150 flex flex-col">
                     <div className=" basis-110 flex flex-col justify-center place-items-center">

@@ -3,7 +3,7 @@ import axios from "axios";
 import toast,{Toaster} from "react-hot-toast";
 import Navbar from "../../components/Navbar";
 
-function Addproducts() {
+function UpdateProducts() {
 
     const [isloading,setloading]=useState(false);
     const [product,setProduct]=useState({
@@ -114,6 +114,7 @@ function Addproducts() {
                 <div className=" flex flex-row justify-between gap-x-4 h-10 px-30">
                     <button className="flex-1 bg-[#42D940] text-xl font-mono text-white rounded-[5px] active:scale-95"
                     onClick={onAdd}
+                    disabled
                     >
                     {isloading ? "Uploding" : "Add"}
                     </button>
@@ -136,4 +137,4 @@ function Addproducts() {
     )
 }
 
-export default Addproducts;
+export default UpdateProducts;

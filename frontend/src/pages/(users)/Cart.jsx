@@ -7,7 +7,6 @@ function Cart() {
     const navigate = useNavigate();
     return (
         <div className=' w-screen h-screen' style={{ fontFamily: "'Inria Sans', sans-serif" }}>
-            <Navbar />
             <div className="flex flex-col w-full max-h-10/12 place-items-center relative">
                 <div className='my-4'>
                     <label className='text-3xl font-bold'>PRODUCTS ADDED</label>

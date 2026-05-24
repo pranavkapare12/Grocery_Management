@@ -5,7 +5,6 @@ import { User } from 'lucide-react';
 function Profile() {
     return (
         <div className=' w-screen h-screen' style={{ fontFamily: "'Inria Sans', sans-serif" }}>
-            <Navbar />
             <div className="flex-1 flex w-full h-7/12 justify-center text-2xl font-bold mt-4">
                 <div className=' bg-[#D9D9D9] w-3/12 h-10/12 flex p-10 justify-center flex-col'>
                     <div className='w-full flex flex-1 justify-center items-center'>
