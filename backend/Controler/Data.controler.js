@@ -4,10 +4,10 @@ import Product from "../Database/ProductSchema.js";
 async function getData(req,res){
     let conn = mongoDb();
 
-    if (req.userData.type === "admin"){
+    if (req.userData.type === "Customer"){
         let result = await Product.find({});
         return res.status(200).json({
-            userData: req,userData,
+            userData: req.userData,
             data : result
         })
     }

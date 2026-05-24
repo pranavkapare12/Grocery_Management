@@ -32,8 +32,9 @@ function App() {
     try {
       setLogin(true)
       const data =await axios.get("http://localhost:3000/data/", { withCredentials: true }).then((data) => {
-        console.log(data)
+        // console.log(data)
         setUser({ ...user, user: data.data.userData })
+        console.log(user)
       });
     } catch (error) {
       console.log(error)
@@ -56,19 +57,19 @@ function App() {
               <Routes>
                 <Route path='/' element={user?.user?.type === "Customer" ? <Home /> : user?.user?.type === "Vendor" ? <Navigate to="/addproduct" /> : <Navigate to="/login" />} />
                 <Route path='/aboutus' element={user?.user?.type === "Customer" ? <AboutUs /> : user?.user?.type === "Vendor" ? <Navigate to="/addproduct" /> : <Navigate to="/login" />} />
-                <Route path='/contactus' element={<ContactUs />} />
-                <Route path='/shop' element={<Shop />} />
-                <Route path='/order' element={<Orders />} />
-                <Route path='/profile' element={<Profile />} />
-                <Route path='/wishlist' element={<Wishlist />} />
-                <Route path='/cart' element={<Cart />} />
-                <Route path='/finalorder' element={<FinalOrder />} />
-                <Route path='/search' element={<Search />} />
+                <Route path='/contactus' element={user?.user?.type === "Customer"? <ContactUs /> : user?.user?.type === "Vendor"? <Navigate to="/addproduct" /> : <Navigate to="/login"/>} />
+                <Route path='/shop' element={user?.user?.type === "Customer"? <Shop /> : user?.user?.type === "Vendor"? <Navigate to="/addproduct" /> : <Navigate to="/login"/>} />
+                <Route path='/order' element={user?.user?.type === "Customer"? <Orders /> : user?.user?.type === "Vendor"? <Navigate to="/addproduct" /> : <Navigate to="/login"/>} />
+                <Route path='/profile' element={user?.user?.type === "Customer"? <Profile /> : user?.user?.type === "Vendor"? <Navigate to="/addproduct" /> : <Navigate to="/login"/>} />
+                <Route path='/wishlist' element={user?.user?.type === "Customer"? <Wishlist /> : user?.user?.type === "Vendor"? <Navigate to="/addproduct" /> : <Navigate to="/login"/>} />
+                <Route path='/cart' element={user?.user?.type === "Customer"? <Cart /> : user?.user?.type === "Vendor"? <Navigate to="/addproduct" /> : <Navigate to="/login"/>} />
+                <Route path='/finalorder' element={user?.user?.type === "Customer"? <FinalOrder /> : user?.user?.type === "Vendor"? <Navigate to="/addproduct" /> : <Navigate to="/login"/>} />
+                <Route path='/search' element={user?.user?.type === "Customer"? <Search /> : user?.user?.type === "Vendor"? <Navigate to="/addproduct" /> : <Navigate to="/login"/>} />
 
-                <Route path='/addproduct' element={<Addproducts />} />
+                <Route path='/addproduct' element={user?.user?.type === "Vendor"? <Addproducts /> : user?.user?.type === "Customer"? <Navigate to="/" /> : <Navigate to="/login"/>} />
 
-                <Route path='/login' element={<Login data={user?.user?.type} />} />
-                <Route path='/signup' element={<Signup />} />
+                <Route path='/login' element={ !user ?  <  Login /> : user?.user?.type === "Customer"? <Navigate to="/" /> : <Navigate to="/addproduct"/>} />
+                <Route path='/signup' element={!user ?  <  Signup /> : user?.user?.type === "Customer"? <Navigate to="/" /> : <Navigate to="/addproduct"/>} />
             </Routes>
           }
       </div>
