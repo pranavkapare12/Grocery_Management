@@ -40,7 +40,6 @@ function App() {
       setLogin(true)
       const data = await axios.get("http://localhost:3000/data/", { withCredentials: true }).then((data) => {
         setUser(data.data.userData )
-        console.log(user.type)
         setDbProduct( data.data.products )
       });
     } catch (error) {
