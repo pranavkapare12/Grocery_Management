@@ -31,15 +31,16 @@ import { AuthContext } from './context/AuthProvider'
 
 import axios from 'axios'
 function App() {
-  const { user, setUser } = useContext(AuthContext);
+  const { user, setUser, Db_product, setDbProduct} = useContext(AuthContext);
   const [login, setLogin] = useState(false);
 
   async function fetchData() {
     try {
       setLogin(true)
       const data = await axios.get("http://localhost:3000/data/", { withCredentials: true }).then((data) => {
-        setUser({ ...user, user: data.data.userData })
-        // console.log(user)
+        setUser(data.data.userData )
+        console.log(user.type)
+        setDbProduct( data.data.products )
       });
     } catch (error) {
       console.log(error)
@@ -62,22 +63,23 @@ function App() {
           <>
           <Navbar />
             <Routes>
-              <Route path='/' element={user?.user?.type === "Customer" ? <Home /> : user?.user?.type === "Vendor" ? <Navigate to="/addproduct" /> : <Navigate to="/login" />} />
-              <Route path='/aboutus' element={user?.user?.type === "Customer" ? <AboutUs /> : user?.user?.type === "Vendor" ? <Navigate to="/addproduct" /> : <Navigate to="/login" />} />
-              <Route path='/contactus' element={user?.user?.type === "Customer" ? <ContactUs /> : user?.user?.type === "Vendor" ? <Navigate to="/addproduct" /> : <Navigate to="/login" />} />
-              <Route path='/shop' element={user?.user?.type === "Customer" ? <Shop /> : user?.user?.type === "Vendor" ? <Navigate to="/addproduct" /> : <Navigate to="/login" />} />
-              <Route path='/order' element={user?.user?.type === "Customer" ? <Orders /> : user?.user?.type === "Vendor" ? <Navigate to="/addproduct" /> : <Navigate to="/login" />} />
-              <Route path='/profile' element={user?.user?.type === "Customer" ? <Profile /> : user?.user?.type === "Vendor" ? <Navigate to="/addproduct" /> : <Navigate to="/login" />} />
-              <Route path='/wishlist' element={user?.user?.type === "Customer" ? <Wishlist /> : user?.user?.type === "Vendor" ? <Navigate to="/addproduct" /> : <Navigate to="/login" />} />
-              <Route path='/cart' element={user?.user?.type === "Customer" ? <Cart /> : user?.user?.type === "Vendor" ? <Navigate to="/addproduct" /> : <Navigate to="/login" />} />
-              <Route path='/finalorder' element={user?.user?.type === "Customer" ? <FinalOrder /> : user?.user?.type === "Vendor" ? <Navigate to="/addproduct" /> : <Navigate to="/login" />} />
-              <Route path='/search' element={user?.user?.type === "Customer" ? <Search /> : user?.user?.type === "Vendor" ? <Navigate to="/addproduct" /> : <Navigate to="/login" />} />
+              
+              <Route path='/' element={user?.type === "Customer" ? <Home /> : user?.type === "Vendor" ? <Navigate to="/addproduct" /> : <Navigate to="/login" />} />
+              <Route path='/aboutus' element={user?.type === "Customer" ? <AboutUs /> : user?.type === "Vendor" ? <Navigate to="/addproduct" /> : <Navigate to="/login" />} />
+              <Route path='/contactus' element={user?.type === "Customer" ? <ContactUs /> : user?.type === "Vendor" ? <Navigate to="/addproduct" /> : <Navigate to="/login" />} />
+              <Route path='/shop' element={user?.type === "Customer" ? <Shop /> : user?.type === "Vendor" ? <Navigate to="/addproduct" /> : <Navigate to="/login" />} />
+              <Route path='/order' element={user?.type === "Customer" ? <Orders /> : user?.type === "Vendor" ? <Navigate to="/addproduct" /> : <Navigate to="/login" />} />
+              <Route path='/profile' element={user?.type === "Customer" ? <Profile /> : user?.type === "Vendor" ? <Navigate to="/addproduct" /> : <Navigate to="/login" />} />
+              <Route path='/wishlist' element={user?.type === "Customer" ? <Wishlist /> : user?.type === "Vendor" ? <Navigate to="/addproduct" /> : <Navigate to="/login" />} />
+              <Route path='/cart' element={user?.type === "Customer" ? <Cart /> : user?.type === "Vendor" ? <Navigate to="/addproduct" /> : <Navigate to="/login" />} />
+              <Route path='/finalorder' element={user?.type === "Customer" ? <FinalOrder /> : user?.type === "Vendor" ? <Navigate to="/addproduct" /> : <Navigate to="/login" />} />
+              <Route path='/search' element={user?.type === "Customer" ? <Search /> : user?.type === "Vendor" ? <Navigate to="/addproduct" /> : <Navigate to="/login" />} />
 
-              <Route path='/addproduct' element={user?.user?.type === "Vendor" ? <Addproducts /> : user?.user?.type === "Customer" ? <Navigate to="/" /> : <Navigate to="/login" />} />
-              <Route path='/updateproduct' element={user?.user?.type === "Vendor" ? <UpdateProducts /> : user?.user?.type === "Customer" ? <Navigate to="/" /> : <Navigate to="/login" />} />
-              <Route path='/deleteproduct' element={user?.user?.type === "Vendor" ? <DeleteProduct /> : user?.user?.type === "Customer" ? <Navigate to="/" /> : <Navigate to="/login" />} />
-              <Route path='/login' element={!user ? <  Login /> : user?.user?.type === "Customer" ? <Navigate to="/" /> : <Navigate to="/addproduct" />} />
-              <Route path='/signup' element={!user ? <  Signup /> : user?.user?.type === "Customer" ? <Navigate to="/" /> : <Navigate to="/addproduct" />} />
+              <Route path='/addproduct' element={user?.type === "Vendor" ? <Addproducts /> : user?.type === "Customer" ? <Navigate to="/" /> : <Navigate to="/login" />} />
+              <Route path='/updateproduct' element={user?.type === "Vendor" ? <UpdateProducts /> : user?.type === "Customer" ? <Navigate to="/" /> : <Navigate to="/login" />} />
+              <Route path='/deleteproduct' element={user?.type === "Vendor" ? <DeleteProduct /> : user?.type === "Customer" ? <Navigate to="/" /> : <Navigate to="/login" />} />
+              <Route path='/login' element={!user ? <  Login /> : user?.type === "Customer" ? <Navigate to="/" /> : <Navigate to="/addproduct" />} />
+              <Route path='/signup' element={!user ? <  Signup /> : user?.type === "Customer" ? <Navigate to="/" /> : <Navigate to="/addproduct" />} />
             </Routes>
             </>
         }

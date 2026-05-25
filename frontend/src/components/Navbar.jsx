@@ -37,14 +37,14 @@ function Navbar() {
             </div>
             <div className=" flex justify-between gap-1 text-xl sm:gap-3 md:gap-6 lg:gap-10">
                 {
-                    user?.user?.type == "Customer" ? <>
+                    user?.type == "Customer" ? <>
                         <Link to="/" className="">Home</Link>
                         <Link to="/shop" className="">Shop</Link>
                         <Link to="/order" className="">Order</Link>
                         <Link to="/aboutus" className="">About</Link>
                         <Link to="/contactus" className="">Contact Us</Link>
                     </>
-                        : user?.user?.type == "Vendor" ? <>
+                        : user?.type == "Vendor" ? <>
                             <Link to="/addproduct" className=" focus:border-b-4">Add Product</Link>
                             <Link to="/updateproduct" className=" focus:border-b-4">Update</Link>
                             <Link to="/deleteproduct" className=" focus:border-b-4">Delete</Link>
@@ -54,7 +54,7 @@ function Navbar() {
             </div>
             <div className=" flex justify-between gap-1 sm:gap-1 md:gap-3 lg:gap-6 text-xl">
                 {
-                    user?.user?.type == "Customer" ? <>
+                    user?.type == "Customer" ? <>
                         <Link to="/profile" className=''>
                             <CircleUser className='size-8' />
                         </Link>
@@ -71,7 +71,7 @@ function Navbar() {
                 }
 
                 {
-                    user?.user ? <button className='bg-blue-500 px-2 py-1 rounded-2xl text-white font-mono border-0 active:scale-90' onClick={logout}>
+                    user ? <button className='bg-blue-500 px-2 py-1 rounded-2xl text-white font-mono border-0 active:scale-90' onClick={logout}>
                         Logout
                     </button> : ""
                 }
