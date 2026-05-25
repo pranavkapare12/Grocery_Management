@@ -21,6 +21,7 @@ import Loader from './components/Loader'
 import Addproducts from './pages/(admin)/Addproducts'
 import UpdateProducts from './pages/(admin)/Update_products'
 import DeleteProduct from './pages/(admin)/Delete_products'
+import ListProduct from './pages/(admin)/List_products'
 
 // React Dom Properties
 import { Route, Routes, Navigate } from 'react-router-dom'
@@ -78,6 +79,7 @@ function App() {
               <Route path='/addproduct' element={user?.type === "Vendor" ? <Addproducts /> : user?.type === "Customer" ? <Navigate to="/" /> : <Navigate to="/login" />} />
               <Route path='/updateproduct' element={user?.type === "Vendor" ? <UpdateProducts /> : user?.type === "Customer" ? <Navigate to="/" /> : <Navigate to="/login" />} />
               <Route path='/deleteproduct' element={user?.type === "Vendor" ? <DeleteProduct /> : user?.type === "Customer" ? <Navigate to="/" /> : <Navigate to="/login" />} />
+              <Route path='/listproduct' element={user?.type === "Vendor" ? <ListProduct /> : user?.type === "Customer" ? <Navigate to="/" /> : <Navigate to="/login" />} />
               <Route path='/login' element={!user ? <  Login /> : user?.type === "Customer" ? <Navigate to="/" /> : <Navigate to="/addproduct" />} />
               <Route path='/signup' element={!user ? <  Signup /> : user?.type === "Customer" ? <Navigate to="/" /> : <Navigate to="/addproduct" />} />
             </Routes>

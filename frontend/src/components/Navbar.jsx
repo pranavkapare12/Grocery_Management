@@ -29,7 +29,6 @@ function Navbar() {
         }
     }
 
-    console.log(user)
     return (
         <div className=' relative top-0 w-full h-15 flex justify-between place-items-center px-1 sm:px-1 md:px-3 lg:px-12 shadow-lg' style={{ fontFamily: "'Inria Sans', sans-serif" }}>
             <div className=" font-bold text-2xl flex place-items-center" >
@@ -45,9 +44,10 @@ function Navbar() {
                         <Link to="/contactus" className="">Contact Us</Link>
                     </>
                         : user?.type == "Vendor" ? <>
-                            <Link to="/addproduct" className=" focus:border-b-4">Add Product</Link>
+                            <Link to="/addproduct" className=" focus:border-b-4">Add</Link>
                             <Link to="/updateproduct" className=" focus:border-b-4">Update</Link>
                             <Link to="/deleteproduct" className=" focus:border-b-4">Delete</Link>
+                            <Link to="/listproduct" className=' focus:border-b-4'>Products</Link>
                         </> : ""
                 }
 
