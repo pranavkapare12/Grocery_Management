@@ -1,4 +1,4 @@
-import { uplode } from "../Functions/fileuplode.functions.js"
+import { uplode , deleteFile } from "../Functions/fileuplode.functions.js"
 import Product from "../Database/ProductSchema.js";
 async function fileUplode(req, res) {
     const file = req.file;
@@ -34,4 +34,32 @@ async function fileUplode(req, res) {
     })
 }
 
-export { fileUplode }
+async function fileDelete(req,res){
+    const data = req.body;
+    console.log(data);
+
+    const result = await deleteFile(data.public_id);
+    if( result.result !== "ok"){
+        console.log("error in deleting file");
+        return res.status(301).json({
+            "message":"error in deleting file"
+        })
+    }
+
+    const dbResult = await Product.deleteOne({
+        _id: data._id
+    })
+
+    if(!dbResult.result !== "ok"){
+        console.log("error in deleting file from database");
+        return res.status(301).json({
+            "message":"error in deleting file from database"
+        })
+    }
+
+    return res.status(200).json({
+        "message":"All is working correctly"
+    })
+}
+
+export { fileUplode , fileDelete}
