@@ -1,54 +1,44 @@
-import { useState } from "react";
+import { useState ,useContext} from "react";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 import Navbar from "../../components/Navbar";
+import { AuthContext } from "../../context/AuthProvider";
+import { useEffect } from "react";
 
 function DeleteProduct() {
 
     const [isloading, setloading] = useState(false);
-    const [product, setProduct] = useState({
-        name: "",
-        description: "",
-        price: 0,
-        stock: 0,
-        category: "",
-        Brand: "",
-        file: ""
-    })
-
-    async function DeleteProduct() {
-        const formData = new FormData();
-        if (product.name == "" || product.description == "" || product.price == 0 || product.stock == 0 || product.category == "" || product.Brand == "" || product.file == "") {
-            toast.error("All fields are required");
+    const { Db_product, setDbProduct } = useContext(AuthContext);
+    const [product,setProduct]=useState({})
+    const [id,setId]=useState("")
+    let ProductData = ""
+    async function Delete() {
+        if(!product){
+            toast.error("Please Add the Id")
             return;
         }
+        try{
+            const result =await axios.post("http://localhost:3000/file/delete",product,{withCredentials:true});
+            toast.success("Data is Delete successfully")
+            Db_product.filter(user => user._id !== id)
+            console.log(Db_product)
+        }catch(error){
+            console.log(error)
+        }
+    }
 
-        formData.append("name", product.name);
-        formData.append("description", product.description);
-        formData.append("price", product.price);
-        formData.append("stock", product.stock);
-        formData.append("category", product.category);
-        formData.append("brand", product.Brand);
-        formData.append("image", product.file)
-        let result;
-        try {
-            setloading(true);
-            result = await axios.post("http://localhost:3000/file/uplode", formData, { withCredentials: true });
-            if (result.status === 200) {
-                toast.success("Product Added Successfully")
+    function findData(){
+        Db_product.forEach((data,index)=>{
+            if(data._id === id){
+               setProduct(data)
             }
-        } catch (error) {
-            console.log(result)
-            toast.error("Failed to add products")
-        }
-        finally {
-            setloading(false);
-        }
+        })
     }
 
-    function resetField() {
-        setProduct({ name: "" })
-    }
+    useEffect(()=>{
+        findData()
+    },[id])
+
 
     return (<>
         <div className="w-full h-full flex flex-col justify-center place-items-center">
@@ -58,26 +48,21 @@ function DeleteProduct() {
                     <label htmlFor="" className=" text-4xl font-bold">Product Details</label>
                 </div>
                 <div className=" w-full h-60  flex justify-center place-items-center">
-                    <img src="../../../public/apple.png" alt="image" className=" w-60 h-60 overflow-hidden" />
+                    <img src={product.url} alt="Enter id" className=" w-60 h-60 overflow-hidden" />
                 </div>
                 <div className=" flex flex-col justify-center gap-y-4 px-25">
-                    <select type="text"
-                        placeholder="Name"
+                    <input type="text"
+                        placeholder="PAST ID"
                         required
                         className="w-80 h-15 border-4 border-gray-600/80 px-5 rounded-xl text-xl font-mono"
-                    >
-                        <option value="Apple">Apple</option>
-                        <option value="Banana">Banana</option>
-                        <option value="Mango">Mango</option>
-                        <option value="Milk">Milk</option>
-                        <option value="Orange">Orange</option>
-                    </select>
+                        value={id || ""}
+                        onChange={(e)=>{setId(e.target.value)}}
+                    />
+                    
                 </div>
                 <div className=" flex place-items-center justify-center gap-x-4 h-10 px-30">
-                    <button className=" w-auto  bg-[#42D940] text-xl px-10 py-2 font-mono text-white rounded-[5px] active:scale-95"
-                        onClick={DeleteProduct}
-                        disabled
-                    >
+                    <button className=" w-auto  bg-[#42D940] text-xl px-10 py-2 font-mono text-white rounded-[5px] active:scale-95"                        
+                        onClick={Delete}>
                         {isloading ? "Deleting..." : "Delete"}
                     </button>
 
