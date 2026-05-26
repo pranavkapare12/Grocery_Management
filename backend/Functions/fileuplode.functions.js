@@ -39,7 +39,6 @@ async function deleteFile(public_id){
 
     try{
         const result = await cloudinary.uploader.destroy(public_id,option);
-        console.log(result);
         return result;
     }catch(error){
         console.log(error)

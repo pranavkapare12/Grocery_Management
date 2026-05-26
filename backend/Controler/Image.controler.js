@@ -36,7 +36,6 @@ async function fileUplode(req, res) {
 
 async function fileDelete(req,res){
     const data = req.body;
-    console.log(data);
 
     const result = await deleteFile(data.public_id);
     if( result.result !== "ok"){
@@ -50,7 +49,7 @@ async function fileDelete(req,res){
         _id: data._id
     })
 
-    if(!dbResult.result !== "ok"){
+    if(!dbResult.result === false){
         console.log("error in deleting file from database");
         return res.status(301).json({
             "message":"error in deleting file from database"
