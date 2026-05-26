@@ -9,17 +9,22 @@ function Addproducts() {
     const [product,setProduct]=useState({
         name:"",
         description:"",
-        price:0,
-        stock:0,
-        category:"",
+        price:'\0',
+        stock:'\0',
+        category:"Vegitable",
         Brand:"",
         file:""
     })
 
     async function onAdd(){
         const formData =new FormData();
-        if(product.name == "" || product.description == "" || product.price == 0 || product.stock == 0 || product.category == "" || product.Brand == "" || product.file == ""){
+        if(product.name == "" || product.description == "" || product.price == 0 || product.stock == 0 || product.category == "" ||  product.file == ""){
             toast.error("All fields are required");
+            return;
+        }
+
+        if ( product.file.size > 10 * 1024 * 1024){
+            toast("FILE SIZE IS TOO LARGE");
             return;
         }
 
@@ -43,11 +48,16 @@ function Addproducts() {
         }
         finally{
             setloading(false);
+            resetField()
         }
     }
 
     function resetField(){
-        setProduct({name:""})
+        setProduct({
+            category:"Vegitable",  
+            price:'\0',
+            stock:'\0'
+    })
     }
 
     return (<>
@@ -76,14 +86,14 @@ function Addproducts() {
                     placeholder="Price" 
                     required
                     className="w-full h-15 border-4 border-gray-600/80 px-5 rounded-xl text-xl font-mono"
-                    value={product.price || 0}
+                    value={product.price}
                     onChange={(e)=>{setProduct({...product,price:e.target.value})}}
                     />
                     <input type="number" 
                     placeholder="Stock" 
                     required
                     className="w-full h-15 border-4 border-gray-600/80 px-5 rounded-xl text-xl font-mono"
-                    value={product.stock || 0}
+                    value={product.stock}
                     onChange={(e)=>{setProduct({...product,stock:e.target.value})}}
                     />
                     <select type="text" 

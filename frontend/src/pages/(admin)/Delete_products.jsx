@@ -20,8 +20,6 @@ function DeleteProduct() {
         try{
             const result =await axios.post("http://localhost:3000/file/delete",product,{withCredentials:true});
             toast.success("Data is Delete successfully")
-            Db_product.filter(user => user._id !== id)
-            console.log(Db_product)
         }catch(error){
             console.log(error)
         }
@@ -35,9 +33,6 @@ function DeleteProduct() {
         })
     }
 
-    useEffect(()=>{
-        findData()
-    },[id])
 
 
     return (<>
