@@ -33,6 +33,10 @@ const ProductSchema = new Schema({
     user_id:{
         type:String,
         require:true
+    },
+    unit:{
+        type:String,
+        require:true
     }
 },{ timestamps:true })
 

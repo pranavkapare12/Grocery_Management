@@ -12,7 +12,8 @@ async function fileUplode(req, res) {
         stock: parseInt(req.body.stock),
         category: req.body.category,
         brand: req.body.brand,
-        user_id: req.userData._id
+        user_id: req.userData._id,
+        unit: req.body.unit
     }
     try {
         const result =await Product.insertOne(storeData);

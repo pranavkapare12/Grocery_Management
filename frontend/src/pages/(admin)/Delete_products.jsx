@@ -53,7 +53,7 @@ function DeleteProduct() {
                     <label htmlFor="" className=" text-4xl font-bold">Product Details</label>
                 </div>
                 <div className=" w-full h-60  flex justify-center place-items-center">
-                    <img src={product.url} alt="Enter id" className=" w-60 h-60 overflow-hidden" />
+                    <img src={product.url || "../../../public/image.png"} alt="Enter id" className=" w-50 h-50 overflow-hidden" />
                 </div>
                 <div className=" flex flex-col justify-center gap-y-4 px-25">
                     <input type="text"

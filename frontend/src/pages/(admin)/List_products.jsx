@@ -32,7 +32,7 @@ function Product(props) {
                 </div>
                 <div className="flex-1 flex justify-baseline gap-x-3 place-items-center">
                     <label htmlFor="" className="">Stock</label>
-                    <label htmlFor="" className="">{props.data.stock || 0} Kg</label>
+                    <label htmlFor="" className="">{props.data.stock || 0} {props.data.unit || "none"}</label>
                 </div>
                 <div className="flex-1 flex justify-baseline gap-x-3 place-items-center">
                     <label htmlFor="" className="">Category</label>
