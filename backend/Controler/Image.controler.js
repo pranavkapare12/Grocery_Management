@@ -16,7 +16,6 @@ async function fileUplode(req, res) {
     }
     try {
         const result =await Product.insertOne(storeData);
-        console.log(result)
         if (result) {
             return res.status(200).json({
                 result,
