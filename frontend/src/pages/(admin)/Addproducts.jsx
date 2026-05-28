@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState ,useContext } from "react";
 import axios from "axios";
 import toast,{Toaster} from "react-hot-toast";
 import Navbar from "../../components/Navbar";
+import { AuthContext } from "../../context/AuthProvider";
 
 function Addproducts() {
 
@@ -16,6 +17,7 @@ function Addproducts() {
         file:""
     })
 
+    const {Db_product,setDbProduct} = useContext(AuthContext);
     async function onAdd(){
         const formData =new FormData();
         if(product.name == "" || product.description == "" || product.price == 0 || product.stock == 0 || product.category == "" ||  product.file == ""){
@@ -39,6 +41,7 @@ function Addproducts() {
         try{
             setloading(true);
             result =await axios.post("http://localhost:3000/file/uplode",formData,{withCredentials: true});
+            setDbProduct([...Db_product,result.data.result])
             if(result.status === 200){
                 toast.success("Product Added Successfully")
             }

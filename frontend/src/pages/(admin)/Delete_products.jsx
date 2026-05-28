@@ -33,6 +33,9 @@ function DeleteProduct() {
         })
     }
 
+    useEffect(()=>{
+        findData();
+    },[id])
 
 
     return (<>

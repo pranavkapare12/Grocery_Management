@@ -19,7 +19,7 @@ async function fileUplode(req, res) {
         console.log(result)
         if (result) {
             return res.status(200).json({
-                "message": "All is working corectly"
+                result,
             })
         }
     }
