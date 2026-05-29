@@ -26,7 +26,7 @@ async function login(req, res) {
         })
     }
 
-    
+
     let getCookie = generateToken(userDbResult._id);
     const userData = {
         _id: userDbResult._id,
@@ -35,7 +35,7 @@ async function login(req, res) {
         type: userDbResult.type,
         createAt: userDbResult.createdAt
     }
-    await res.cookie('Grocery_User', getCookie, {
+    res.cookie('Grocery_User', getCookie, {
         httpOnly: true,
         secure: false,
         sameSite: "lax",
@@ -68,7 +68,7 @@ async function signup(req, res) {
         type: type
     })
 
-    
+
     let getToken = generateToken(result._id);
     const userData = {
         _id: result._id,
@@ -77,7 +77,7 @@ async function signup(req, res) {
         type: result.type,
         createAt: result.createdAt
     }
-    await res.cookie('Grocery_User', getToken, {
+    res.cookie('Grocery_User', getToken, {
         httpOnly: true,
         secure: false,
         sameSite: "lax",
@@ -88,7 +88,12 @@ async function signup(req, res) {
 }
 
 function logout(req, res) {
-    res.clearCookie('Grocery_User');
+    res.clearCookie('Grocery_User', {
+        httpOnly: true,
+        secure: false,
+        sameSite: "lax",
+        path: "/"
+    });
     res.status(200).json({ message: "Cookie Clear" })
 }
 
