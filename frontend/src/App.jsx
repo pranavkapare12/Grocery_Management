@@ -79,7 +79,7 @@ function App() {
               <Route path='/updateproduct' element={user?.type === "Vendor" ? <UpdateProducts /> : user?.type === "Customer" ? <Navigate to="/" /> : <Navigate to="/login" />} />
               <Route path='/deleteproduct' element={user?.type === "Vendor" ? <DeleteProduct /> : user?.type === "Customer" ? <Navigate to="/" /> : <Navigate to="/login" />} />
               <Route path='/listproduct' element={user?.type === "Vendor" ? <ListProduct /> : user?.type === "Customer" ? <Navigate to="/" /> : <Navigate to="/login" />} />
-              <Route path='/login' element={!user ? <  Login /> : user?.type === "Customer" ? <Navigate to="/" /> : <Navigate to="/addproduct" />} />
+              <Route path='/login' element={!user?.type ? <  Login /> : user?.type === "Customer" ? <Navigate to="/" /> : <Navigate to="/addproduct" />} />
               <Route path='/signup' element={!user ? <  Signup /> : user?.type === "Customer" ? <Navigate to="/" /> : <Navigate to="/addproduct" />} />
             </Routes>
             </>
