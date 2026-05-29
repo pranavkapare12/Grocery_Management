@@ -106,7 +106,7 @@ function UpdateProducts() {
                         onChange={(e) => { setProduct({ ...product, description: e.target.value }) }}
                     />
                     <div className="flex place-items-center">
-                        <label className="flex-1 flex justify-center place-items-center font-mono text-xl">Price</label>
+                        <label className="flex-1 flex justify-center place-items-center font-mono text-xl text-gray-500">Price</label>
                         <input type="number"
                             placeholder="Price"
                             required
@@ -116,7 +116,7 @@ function UpdateProducts() {
                         />
                     </div>
                     <div className=" flex place-items-center">
-                        <label className="flex-1 flex justify-center place-items-center font-mono text-xl">Stock</label>
+                        <label className="flex-1 flex justify-center place-items-center font-mono text-xl text-gray-500">Stock</label>
                         <input type="number"
                             placeholder="Stock"
                             required

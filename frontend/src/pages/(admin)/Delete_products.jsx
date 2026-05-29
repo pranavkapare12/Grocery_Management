@@ -56,13 +56,22 @@ function DeleteProduct() {
                     <img src={product.url || "../../../public/image.png"} alt="Enter id" className=" w-50 h-50 overflow-hidden" />
                 </div>
                 <div className=" flex flex-col justify-center gap-y-4 px-25">
-                    <input type="text"
+                    <select
                         placeholder="PAST ID"
                         required
                         className="w-80 h-15 border-4 border-gray-600/80 px-5 rounded-xl text-xl font-mono"
                         value={id || ""}
                         onChange={(e)=>{setId(e.target.value)}}
-                    />
+                    >
+                        {
+                            id ? "" : <option value="">select option</option>
+                        }
+                        {
+                            Db_product.map((data)=>(
+                                <option key={data._id} value={data._id}>{data.product_name}</option>
+                            ))
+                        }
+                    </select>
                     
                 </div>
                 <div className=" flex place-items-center justify-center gap-x-4 h-10 px-30">
