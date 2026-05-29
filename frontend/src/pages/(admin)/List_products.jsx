@@ -56,6 +56,9 @@ function ListProduct() {
     return (
         <>
             <div className="w-screen h-screen flex flex-col justify-center place-items-center">
+                <div className=" w-full flex justify-center place-items-center  py-4">
+                    <label htmlFor="" className=" font-mono text-xl border-b-2 border-gray-400 ">Inventory</label>
+                </div>
                 <Toaster />
                 <div className=" w-full h-full flex justify-center flex-row flex-wrap gap-5 rounded-xl py-5 px-10">
                     {
