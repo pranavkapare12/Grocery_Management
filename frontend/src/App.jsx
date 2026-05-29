@@ -30,6 +30,9 @@ import { useContext, useState, useEffect } from 'react'
 // AuthContext
 import { AuthContext } from './context/AuthProvider'
 
+// Landing Page
+import Landing from './components/LandingPage'
+
 import axios from 'axios'
 function App() {
   const { user, setUser, Db_product, setDbProduct} = useContext(AuthContext);
@@ -63,7 +66,6 @@ function App() {
           <>
           <Navbar />
             <Routes>
-              
               <Route path='/' element={user?.type === "Customer" ? <Home /> : user?.type === "Vendor" ? <Navigate to="/addproduct" /> : <Navigate to="/login" />} />
               <Route path='/aboutus' element={user?.type === "Customer" ? <AboutUs /> : user?.type === "Vendor" ? <Navigate to="/addproduct" /> : <Navigate to="/login" />} />
               <Route path='/contactus' element={user?.type === "Customer" ? <ContactUs /> : user?.type === "Vendor" ? <Navigate to="/addproduct" /> : <Navigate to="/login" />} />
@@ -74,13 +76,13 @@ function App() {
               <Route path='/cart' element={user?.type === "Customer" ? <Cart /> : user?.type === "Vendor" ? <Navigate to="/addproduct" /> : <Navigate to="/login" />} />
               <Route path='/finalorder' element={user?.type === "Customer" ? <FinalOrder /> : user?.type === "Vendor" ? <Navigate to="/addproduct" /> : <Navigate to="/login" />} />
               <Route path='/search' element={user?.type === "Customer" ? <Search /> : user?.type === "Vendor" ? <Navigate to="/addproduct" /> : <Navigate to="/login" />} />
-
               <Route path='/addproduct' element={user?.type === "Vendor" ? <Addproducts /> : user?.type === "Customer" ? <Navigate to="/" /> : <Navigate to="/login" />} />
               <Route path='/updateproduct' element={user?.type === "Vendor" ? <UpdateProducts /> : user?.type === "Customer" ? <Navigate to="/" /> : <Navigate to="/login" />} />
               <Route path='/deleteproduct' element={user?.type === "Vendor" ? <DeleteProduct /> : user?.type === "Customer" ? <Navigate to="/" /> : <Navigate to="/login" />} />
               <Route path='/listproduct' element={user?.type === "Vendor" ? <ListProduct /> : user?.type === "Customer" ? <Navigate to="/" /> : <Navigate to="/login" />} />
               <Route path='/login' element={!user?.type ? <  Login /> : user?.type === "Customer" ? <Navigate to="/" /> : <Navigate to="/addproduct" />} />
-              <Route path='/signup' element={!user ? <  Signup /> : user?.type === "Customer" ? <Navigate to="/" /> : <Navigate to="/addproduct" />} />
+              <Route path='/signup' element={!user?.type ? <  Signup /> : user?.type === "Customer" ? <Navigate to="/" /> : <Navigate to="/addproduct" />} />
+              <Route path='/landing' element={!user?.type ? <  Landing /> : user?.type === "Customer" ? <Navigate to="/" /> : <Navigate to="/addproduct" />} />
             </Routes>
             </>
         }

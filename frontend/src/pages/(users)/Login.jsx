@@ -3,6 +3,7 @@ import { Eye ,EyeOff } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import toast,{Toaster} from 'react-hot-toast'
 import { AuthContext } from '../../context/AuthProvider';
+import { Navigate } from 'react-router-dom';
 import axios from 'axios'
 
 function Login(props) {
@@ -72,7 +73,9 @@ function Login(props) {
                         >Login Now</button>
                     </div>
                     <div className=" basis-20  mx-4 my-0.5 flex justify-center items-center ">
-                        <button type="button" name="" className=' h-10/12 w-12/12 px-7 bg-[#42D940] text-white font-bold outline-0 text-2xl rounded-md flex justify-center  gap-7 place-items-center  active:scale-98' placeholder='Enter Name' >
+                        <button type="button" name="" className=' h-10/12 w-12/12 px-7 bg-[#42D940] text-white font-bold outline-0 text-2xl rounded-md flex justify-center  gap-7 place-items-center  active:scale-98' placeholder='Enter Name'
+                        onClick={()=> <Navigate to="/landing" />}
+                        >
                             <img src="/google.png" alt="google img" className='h-10' />
                             <label>Login by Google</label>
                         </button>
