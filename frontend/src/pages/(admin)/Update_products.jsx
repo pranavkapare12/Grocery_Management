@@ -13,31 +13,32 @@ function UpdateProducts() {
         description: "",
         price: 0,
         stock: 0,
-        category: "Vegitable",
+        category: "",
         brand: "",
-        unit: "kg"
+        unit: ""
     })
 
     async function onUpdate() {
-        const formData = new FormData();
-        if (product.name == "" || product.description == "" || product.price == 0 || product.stock == 0 || product.category == "" || product.Brand == "" || product.file == "") {
+        if (product._id == "" || product.product_name == "" || product.description == "" || product.price == 0 || product.stock == 0 || product.category == "" || product.brand == "" || product.unit == "") {
             toast.error("All fields are required");
             return;
         }
 
-        formData.append("name", product.name);
-        formData.append("description", product.description);
-        formData.append("price", product.price);
-        formData.append("stock", product.stock);
-        formData.append("category", product.category);
-        formData.append("brand", product.Brand);
-        formData.append("unit", product.unit);
+        if (product.price < 0 || product.stock < 0) {
+            toast.error("Product Price or Stock Can't be Negative")
+            return
+        }
+
+
         let result;
         try {
             setloading(true);
-            result = await axios.post("http://localhost:3000/file/uplode", formData, { withCredentials: true });
+            result = await axios.put("http://localhost:3000/data/update", product, { withCredentials: true });
             if (result.status === 200) {
                 toast.success("Product Added Successfully")
+                let data = Db_product.filter(data => data._id !== product._id);
+                setDbProduct([...data, product])
+                resetField();
             }
         } catch (error) {
             console.log(result)
@@ -50,18 +51,17 @@ function UpdateProducts() {
 
     function resetField() {
         setProduct({
+            _id:"",
             price: 0,
             stock: 0,
-            unit: "kg",
-            category: "Vegitable"
+            unit:""
         })
     }
 
     function getData(value) {
-        setProduct({ ...product, _id:value })
+        setProduct({ ...product, _id: value })
         let selected_product_data = Db_product.filter(data => data._id === value);
         selected_product_data = selected_product_data[0];
-        // console.log(selected_product_data)
         setProduct(selected_product_data)
     }
 
@@ -81,8 +81,11 @@ function UpdateProducts() {
                         onChange={(e) => { getData(e.target.value) }}
                     >
                         {
+                            product._id ? "" : <option value="">Select option</option>
+                        }
+                        {
                             Db_product.map((data) => (
-                                <option value={data._id}>{data._id}</option>
+                                <option value={data._id} key={data._id}>{data._id}</option>
                             ))
                         }
                     </select>
@@ -102,20 +105,26 @@ function UpdateProducts() {
                         value={product.description || ""}
                         onChange={(e) => { setProduct({ ...product, description: e.target.value }) }}
                     />
-                    <input type="number"
-                        placeholder="Price"
-                        required
-                        className="w-full h-15 border-4 border-gray-600/80 px-5 rounded-xl text-xl font-mono"
-                        value={product.price || 0}
-                        onChange={(e) => { setProduct({ ...product, price: e.target.value }) }}
-                    />
-                    <input type="number"
-                        placeholder="Stock"
-                        required
-                        className="w-full h-15 border-4 border-gray-600/80 px-5 rounded-xl text-xl font-mono"
-                        value={product.stock || 0}
-                        onChange={(e) => { setProduct({ ...product, stock: e.target.value }) }}
-                    />
+                    <div className="flex place-items-center">
+                        <label className="flex-1 flex justify-center place-items-center font-mono text-xl">Price</label>
+                        <input type="number"
+                            placeholder="Price"
+                            required
+                            className="flex-4 h-15 border-4 border-gray-600/80 px-5 rounded-xl text-xl font-mono"
+                            value={product.price || 0}
+                            onChange={(e) => { setProduct({ ...product, price: e.target.value }) }}
+                        />
+                    </div>
+                    <div className=" flex place-items-center">
+                        <label className="flex-1 flex justify-center place-items-center font-mono text-xl">Stock</label>
+                        <input type="number"
+                            placeholder="Stock"
+                            required
+                            className="flex-4 h-15 border-4 border-gray-600/80 px-5 rounded-xl text-xl font-mono"
+                            value={product.stock || 0}
+                            onChange={(e) => { setProduct({ ...product, stock: e.target.value }) }}
+                        />
+                    </div>
                     <select
                         placeholder="Category"
                         className="w-full h-15 border-4 border-gray-600/80 px-5 rounded-xl text-xl text-gray-700 font-mono"
@@ -123,6 +132,9 @@ function UpdateProducts() {
                         value={product.category || ""}
                         onChange={(e) => { setProduct({ ...product, category: e.target.value }) }}
                     >
+                        {
+                            product.category ? "" : <option value="">Select option</option>
+                        }
                         <option value="Vegitable">Vegitable</option>
                         <option value="Fruit">Fruit</option>
                         <option value="Snack">Snack</option>
@@ -132,9 +144,12 @@ function UpdateProducts() {
                         placeholder="Unit"
                         className="w-full h-15 border-4 border-gray-600/80 px-5 rounded-xl text-xl text-gray-700 font-mono"
                         required
-                        value={product.unit || ""}
+                        value={product.unit}
                         onChange={(e) => { setProduct({ ...product, unit: e.target.value }) }}
                     >
+                        {
+                            product.unit ? "" : <option value="">Select option</option>
+                        }
                         <option value="kg">Kg</option>
                         <option value="li">liter</option>
                     </select>
@@ -149,7 +164,6 @@ function UpdateProducts() {
                 <div className=" flex flex-row justify-between gap-x-4 h-10 px-30">
                     <button className="flex-1 bg-[#42D940] text-xl font-mono text-white rounded-[5px] active:scale-95"
                         onClick={onUpdate}
-                        disabled
                     >
                         {isloading ? "Updating..." : "Update"}
                     </button>
