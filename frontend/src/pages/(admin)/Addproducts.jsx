@@ -26,6 +26,10 @@ function Addproducts() {
             return;
         }
 
+        if (product.price < 0 || product.stock < 0){
+            toast.error("Product Price and Stock cannot be nagative");
+        }
+
         if (product.file.size > 10 * 1024 * 1024) {
             toast("FILE SIZE IS TOO LARGE");
             return;
