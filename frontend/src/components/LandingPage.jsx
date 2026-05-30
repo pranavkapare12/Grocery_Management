@@ -19,7 +19,8 @@ function Landing() {
 
 
     function loginWithGoogle(data) {
-        console.log(jwtDecode(data.credential))
+        let jwtDate = jwtDecode(data.credential);
+        setUserDate({...userData,email:jwtDate.email})
     }
 
     function error(err) {
