@@ -1,6 +1,6 @@
 import { Router } from "express";
 
-import { login, signup, logout ,loginWithGoogle } from "../Controler/Auth.controler.js";
+import { login, signup, logout ,loginWithGoogle , loginWithGoogle_CreateUser } from "../Controler/Auth.controler.js";
 
 const router = Router();
 
@@ -11,5 +11,7 @@ router.post('/signup',signup)
 router.post('/logout',logout)
 
 router.post('/google',loginWithGoogle)
+
+router.post('/google/create',loginWithGoogle_CreateUser);
 
 export default router;

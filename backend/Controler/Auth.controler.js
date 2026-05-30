@@ -106,11 +106,9 @@ async function loginWithGoogle(req, res){
         })
      }
     let conn = mongoDb();
-
     let result = await User.findOne({
         email: req.body.email
     })
-
     if (result){
         return res.status(200).json({
             message: "USER FOUND",
@@ -121,9 +119,38 @@ async function loginWithGoogle(req, res){
             message: "USER NOT FOUND"
         })
     }
-    
+    res.status(200).json({ message: "All is Working Correctly" })
+}
+
+async function loginWithGoogle_CreateUser(req, res){
+    let conn = mongoDb();
+    console.log(req.body);
+
+    if (req.body.email === "" || req.body.name === "" || req.body.type === "") {
+        return res.status(400).json({
+            message: "EMAIL , NAME AND TYPE ARE REQUIRED"
+        })
+     }
+
+     let ack = await User.insertOne({
+        username: req.body.username,
+        email: req.body.email,
+        password: req.body.fir_pass,
+        type: req.body.type
+     })
+
+     if (ack){
+        return res.status(201).json({
+            message: "USER CREATED SUCCESSFULLY",
+            ack
+        })
+     }else{
+        return res.status(500).json({
+            message: "FAILED TO CREATE USER"
+        })
+     }
 
     res.status(200).json({ message: "All is Working Correctly" })
 }
 
-export { login, signup, logout ,loginWithGoogle}
+export { login, signup, logout ,loginWithGoogle , loginWithGoogle_CreateUser}; 
