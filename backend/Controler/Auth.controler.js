@@ -97,4 +97,33 @@ function logout(req, res) {
     res.status(200).json({ message: "Cookie Clear" })
 }
 
-export { login, signup, logout }
+async function loginWithGoogle(req, res){
+    console.log(req.body);
+
+    if (req.body.email === "") {
+        return res.status(400).json({
+            message: "EMAIL IS REQUIRED"
+        })
+     }
+    let conn = mongoDb();
+
+    let result = await User.findOne({
+        email: req.body.email
+    })
+
+    if (result){
+        return res.status(200).json({
+            message: "USER FOUND",
+            result
+        })
+    }else{
+        return res.status(200).json({
+            message: "USER NOT FOUND"
+        })
+    }
+    
+
+    res.status(200).json({ message: "All is Working Correctly" })
+}
+
+export { login, signup, logout ,loginWithGoogle}
