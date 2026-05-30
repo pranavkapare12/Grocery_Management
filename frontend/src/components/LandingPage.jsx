@@ -1,30 +1,53 @@
 import { GoogleLogin } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
 import { Eye, EyeClosed } from "lucide-react"
-import { useState } from "react";
-
+import { useState ,useContext } from "react";
+import { AuthContext } from "../context/AuthProvider";
+import axios from "axios";
 
 function Landing() {
-
+    const { user, setUser, Db_product, setDbProduct } = useContext(AuthContext);
     const [state, setState] = useState({
         fir_pass: false,
         sec_pass: false
     })
 
-    const [userData, setUserDate] = useState({
+    const [userData, setUserData] = useState({
         email: "",
         fir_pass: "",
-        sec_pass: ""
+        sec_pass: "",
+        is_req_pass: false,
     })
-
+console.log(userData)
 
     function loginWithGoogle(data) {
         let jwtDate = jwtDecode(data.credential);
-        setUserDate({...userData,email:jwtDate.email})
+        setUserData({...userData,email:jwtDate.email})
+        let temp={
+            email:jwtDate.email
+        }
+        const result = axios.post("http://localhost:3000/auth/google",temp,{
+            withCredentials:true
+        }).then((data)=>{
+            console.log(data.data.message)
+            if(data.data.message === "USER NOT FOUND"){
+                setUserData({...userData,is_req_pass:true})
+
+            }else if(data.data.message === "USER FOUND"){
+
+            }
+        }).catch((err)=>{
+            console.log(err)
+        })
     }
 
     function error(err) {
         console.log(err)
+    }
+
+
+    function submit(){
+
     }
 
     return (
@@ -46,7 +69,7 @@ function Landing() {
                     </div>
 
                     {
-                        userData.email === "" ? "" :
+                        userData.email === "" && !userData.is_req_pass ? "" :
                             <>
                                 <div className="flex justify-center w-full gap-x-4">
                                     <input
@@ -74,7 +97,9 @@ function Landing() {
                                     </button>
                                 </div>
                                 <div className="flex justify-center w-full gap-x-4">
-                                    <button className=" border-2 px-5 py-2 bg-black rounded-xl">
+                                    <button className=" border-2 px-5 py-2 bg-black rounded-xl"
+                                    onClick={submit}
+                                    >
                                         <label htmlFor="" className=" text-white font-semibold">Continue</label>
                                     </button>
                                 </div>
