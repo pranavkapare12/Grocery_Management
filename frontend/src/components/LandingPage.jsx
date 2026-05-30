@@ -1,8 +1,9 @@
 import { GoogleLogin } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
 import { Eye, EyeClosed } from "lucide-react"
-import { useState ,useContext } from "react";
+import { useState, useContext } from "react";
 import { AuthContext } from "../context/AuthProvider";
+import toast,{Toaster} from 'react-hot-toast'
 import axios from "axios";
 
 function Landing() {
@@ -18,25 +19,24 @@ function Landing() {
         sec_pass: "",
         is_req_pass: false,
     })
-console.log(userData)
+    console.log(userData)
 
     function loginWithGoogle(data) {
         let jwtDate = jwtDecode(data.credential);
-        setUserData({...userData,email:jwtDate.email})
-        let temp={
-            email:jwtDate.email
+        setUserData({ ...userData, email: jwtDate.email })
+        let temp = {
+            email: jwtDate.email
         }
-        const result = axios.post("http://localhost:3000/auth/google",temp,{
-            withCredentials:true
-        }).then((data)=>{
+        const result = axios.post("http://localhost:3000/auth/google", temp, {
+            withCredentials: true
+        }).then((data) => {
             console.log(data.data.message)
-            if(data.data.message === "USER NOT FOUND"){
-                setUserData({...userData,is_req_pass:true})
-
-            }else if(data.data.message === "USER FOUND"){
+            if (data.data.message === "USER NOT FOUND") {
+                setUserData({ ...userData, email: jwtDate.email, is_req_pass: true , username : jwtDate.name , type:"Customer"})
+            } else if (data.data.message === "USER FOUND") {
 
             }
-        }).catch((err)=>{
+        }).catch((err) => {
             console.log(err)
         })
     }
@@ -46,14 +46,26 @@ console.log(userData)
     }
 
 
-    function submit(){
+    function submit() {
+        if ( userData.fir_pass === "" || userData.sec_pass === ""){
+            toast("ALL FIELDS ARE REQUIRED")
+            return;
+        }
 
+        if (userData.fir_pass !== userData.sec_pass){
+            toast("Ensure both password are equal")
+            return;
+        }
+
+        const result= axios.post("http://localhost:3000/auth/google/create",userData,{
+            withCredentials:true
+        }).then((data)=>console.log(data)).catch((err)=>console.log(err))
     }
 
     return (
         <>
+        <Toaster />
             <div className="flex justify-center place-items-center w-full h-11/12 bg-[#EFEFEF]">
-
                 <div className="min:w-2/12 w-2/12 bg-white p-4 border-4 rounded-[5px] flex flex-col gap-y-4">
                     <div className=" flex justify-center place-items-center">
                         <label htmlFor="" className=" font-bold text-xl">Google Login</label>
@@ -74,7 +86,10 @@ console.log(userData)
                                 <div className="flex justify-center w-full gap-x-4">
                                     <input
                                         type={state.fir_pass ? "text" : "password"}
-                                        placeholder="Password" className=" bg-white border-2 px-4 py-2" />
+                                        placeholder="Password" className=" bg-white border-2 px-4 py-2" 
+                                        value={userData.fir_pass || ""}
+                                        onChange={(e)=>setUserData({...userData,fir_pass:e.target.value})}
+                                        />
                                     <button className=" border-2 px-2 py-2 rounded-[5px]"
                                         onClick={() => setState({ ...state, fir_pass: !state.fir_pass })}
                                     >
@@ -87,7 +102,10 @@ console.log(userData)
                                     <input
                                         type={state.sec_pass ? "text" : "password"}
                                         placeholder="Conform Password"
-                                        className=" bg-white border-2 px-4 py-2" />
+                                        className=" bg-white border-2 px-4 py-2"
+                                        value={userData.sec_pass || ""}
+                                        onChange={(e) => setUserData({...userData,sec_pass:e.target.value})}
+                                        />
                                     <button className=" border-2 px-2 py-2 rounded-[5px]"
                                         onClick={() => setState({ ...state, sec_pass: !state.sec_pass })}
                                     >
@@ -98,7 +116,7 @@ console.log(userData)
                                 </div>
                                 <div className="flex justify-center w-full gap-x-4">
                                     <button className=" border-2 px-5 py-2 bg-black rounded-xl"
-                                    onClick={submit}
+                                        onClick={submit}
                                     >
                                         <label htmlFor="" className=" text-white font-semibold">Continue</label>
                                     </button>
