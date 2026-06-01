@@ -5,10 +5,11 @@ async function getData(req, res) {
     let conn = mongoDb();
 
     if (req.userData.type === "Customer") {
-        let result = await Product.find({});
+        let products = await Product.find({});
+        // console.log(products);
         return res.status(200).json({
             userData: req.userData,
-            data: result
+            products
         })
     }
 
