@@ -19,7 +19,6 @@ function Landing() {
         sec_pass: "",
         is_req_pass: false,
     })
-    console.log(userData)
 
     function loginWithGoogle(data) {
         let jwtDate = jwtDecode(data.credential);
@@ -34,7 +33,8 @@ function Landing() {
             if (data.data.message === "USER NOT FOUND") {
                 setUserData({ ...userData, email: jwtDate.email, is_req_pass: true , username : jwtDate.name , type:"Customer"})
             } else if (data.data.message === "USER FOUND") {
-
+                console.log(data.data.user)
+                setUser(data.data.user)
             }
         }).catch((err) => {
             console.log(err)
@@ -59,7 +59,13 @@ function Landing() {
 
         const result= axios.post("http://localhost:3000/auth/google/create",userData,{
             withCredentials:true
-        }).then((data)=>console.log(data)).catch((err)=>console.log(err))
+        }).then((data)=>{
+            setUser(data.data.user)
+        }).catch((err)=>console.log(err)).finally(()=>{
+            setUserData({
+                email:""
+            })
+        })
     }
 
     return (

@@ -37,7 +37,6 @@ import axios from 'axios'
 function App() {
   const { user, setUser, Db_product, setDbProduct } = useContext(AuthContext);
   const [login, setLogin] = useState(false);
-  // console.log(rocess.env.VITE_DATA)
   async function fetchData() {
     try {
       setLogin(true)
