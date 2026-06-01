@@ -6,6 +6,7 @@ import { AuthContext } from '../../context/AuthProvider';
 import { Navigate } from 'react-router-dom';
 import axios from 'axios'
 
+
 function Login(props) {
     const navigate = useNavigate();
     const {user,setUser} = useContext(AuthContext)
@@ -23,6 +24,7 @@ function Login(props) {
 // TODO ADD useState and useContext hook
         try {
             const res =await axios.post("http://localhost:3000/auth/login",loginData, {withCredentials: true});
+            const user = res.data;
             toast.success("LOGIN SUCCESSFULL");   
         } catch (error) {
             if (error.response)
