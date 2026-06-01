@@ -1,12 +1,14 @@
-import react, { useState } from 'react';
+import react, { useState , useContext} from 'react';
 import { Eye, EyeOff } from 'lucide-react'
 import { Link } from 'react-router-dom';
 import toast,{Toaster} from 'react-hot-toast';
 import axios from 'axios';
+import { AuthContext } from '../../context/AuthProvider';
 
 function Signup() {
     const [showPassword, setShowPassword] = useState(false);
     const [showPassword1, setShowPassword1] = useState(false);
+    const {setUser} = useContext( AuthContext );
 
     const [userData,setUserData]=useState({
       userName:"",
@@ -35,6 +37,8 @@ function Signup() {
         }
         try {
             let res = await axios.post("http://localhost:3000/auth/signup",finalData,{withCredentials: true});
+            const user = res.data;
+            setUser(user)
             toast.success("ACCOUNTED CREATED");
         } catch (error) {
             toast.error(error.response?.data?.message)
@@ -51,7 +55,7 @@ function Signup() {
     return (
         <div className='h-screen w-screen flex justify-center items-center'>
             <Toaster/>
-            <div className='w-10/12 h-9/12 sm:h-8/12 sm:w-6/12 md:h-8/12 md:w-6/12 lg:h-7/12 lg:w-3/12 border-4 rounded-[5px] p-2 flex flex-col '>
+            <div className='w-10/12 sm:h-8/12 sm:w-6/12 md:h-8/12 md:w-6/12 lg:h-7/12 lg:w-3/12 border-4 rounded-[5px] p-2 flex flex-col '>
                 <div className="basis-18 flex justify-center my-4">
                     <label className='font-bold font-inria text-5xl' style={{ fontFamily: "'Inria Sans', sans-serif" }}> Registartion </label>
                 </div>
