@@ -138,7 +138,7 @@ function UpdateProducts() {
                         <option value="Vegitable">Vegitable</option>
                         <option value="Fruit">Fruit</option>
                         <option value="Snack">Snack</option>
-                        <option value="Dari">Dari</option>
+                        <option value="Dairy">Dairy</option>
                     </select>
                     <select
                         placeholder="Unit"
