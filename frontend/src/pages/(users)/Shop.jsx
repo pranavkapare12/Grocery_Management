@@ -2,7 +2,11 @@ import react,{useState} from 'react';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 import ShopCard from '../../components/ShopCard';
+import { useLocation } from 'react-router-dom';
+
 function Shop(){
+    const data = useLocation();
+    let filterValue = data.state || undefined;
     const [product , setProduct] = useState({
         name : "Apple",
         price : 50,
@@ -21,7 +25,7 @@ function Shop(){
                     <label className=" bg-[#D9D9D9] py-4 px-7 border-2 border-black rounded-[3px] active:scale-95 cursor-pointer">VEGITABLES</label>
                     <label className=" bg-[#D9D9D9] py-4 px-7 border-2 border-black rounded-[3px] active:scale-95 cursor-pointer">FRUITS</label>
                     <label className=" bg-[#D9D9D9] py-4 px-7 border-2 border-black rounded-[3px] active:scale-95 cursor-pointer">SNACKS</label>
-                    <label className=" bg-[#D9D9D9] py-4 px-7 border-2 border-black rounded-[3px] active:scale-95 cursor-pointer">DARI</label>
+                    <label className=" bg-[#D9D9D9] py-4 px-7 border-2 border-black rounded-[3px] active:scale-95 cursor-pointer">DAIRY</label>
                 </div>
                 <div className='my-4'>
                     <label className='text-3xl font-bold'>Latest Product</label>

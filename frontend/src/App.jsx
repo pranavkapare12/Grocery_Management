@@ -57,7 +57,6 @@ function App() {
       setLogin(false)
     }
   }
-
   useEffect(() => {
     fetchData();
   }, [])

@@ -18,10 +18,29 @@ function Home(){
                 <div className='w-full h-7/12 bg-white  px-10 flex flex-col justify-center'>
                     <div className='text-2xl font-bold basis-2 flex justify-center my-2'><label>Shop by Category</label></div>
                     <div className=" w-full basis-2xl py-10 flex flex-wrap justify-center gap-20 overflow-scroll">
-                        <NavigationCard imgUrl={"vegitable.png"} route={"/shop"} head={"VEGETABLES"}/>
-                        <NavigationCard imgUrl={"fruits.png"} route={"/shop"} head={"FRUITS"}/>
-                        <NavigationCard imgUrl={"snacks.png"} route={"/shop"} head={"SNACK"}/>
-                        <NavigationCard imgUrl={"dariproducts.png"} route={"/shop"} head={"Dari"}/>
+                        <NavigationCard 
+                        imgUrl={"vegitable.png"} 
+                        route={"/shop"} 
+                        head={"VEGETABLES"} 
+                        content={"A variety of fresh and nutritious vegetables sourced directly from local farms. Ideal for preparing wholesome meals, providing a natural source of vitamins, antioxidants, and dietary fiber."}/>
+                        <NavigationCard 
+                        imgUrl={"fruits.png"} 
+                        route={"/shop"} 
+                        head={"FRUITS"}
+                        content={"Fresh, juicy, and naturally sweet fruits sourced from trusted farms. Rich in vitamins, minerals, and antioxidants, they are perfect for a healthy and refreshing diet."}
+                        />
+                        <NavigationCard 
+                        imgUrl={"snacks.png"} 
+                        route={"/shop"} 
+                        head={"SNACK"}
+                        content={"Nutritious and flavorful snacks made with wholesome ingredients. A great option for those looking for a healthier alternative without compromising on taste."}
+                        />
+                        <NavigationCard 
+                        imgUrl={"dariproducts.png"} 
+                        route={"/shop"} 
+                        head={"DAIRY"}
+                        content={"Fresh dairy products rich in calcium, protein, and essential nutrients. Perfect for everyday nutrition and healthy living."}
+                        />
                     </div>
                 </div>
             </div>
