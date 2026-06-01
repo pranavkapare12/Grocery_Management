@@ -97,24 +97,31 @@ function logout(req, res) {
     res.status(200).json({ message: "Cookie Clear" })
 }
 
-async function loginWithGoogle(req, res){
-    console.log(req.body);
-
+async function loginWithGoogle(req, res) {
     if (req.body.email === "") {
         return res.status(400).json({
             message: "EMAIL IS REQUIRED"
         })
-     }
+    }
     let conn = mongoDb();
-    let result = await User.findOne({
+    let user = await User.findOne({
         email: req.body.email
-    })
-    if (result){
+    }, { password: 0 })
+    if (user) {
+        let getToken = generateToken(user._id);
+
+        res.cookie('Grocery_User', getToken, {
+            httpOnly: true,
+            secure: false,
+            sameSite: "lax",
+            path: "/",
+            maxAge: 7 * 24 * 60 * 60 * 1000
+        });
         return res.status(200).json({
             message: "USER FOUND",
-            result
+            user
         })
-    }else{
+    } else {
         return res.status(200).json({
             message: "USER NOT FOUND"
         })
@@ -122,35 +129,47 @@ async function loginWithGoogle(req, res){
     res.status(200).json({ message: "All is Working Correctly" })
 }
 
-async function loginWithGoogle_CreateUser(req, res){
+async function loginWithGoogle_CreateUser(req, res) {
     let conn = mongoDb();
-    console.log(req.body);
 
     if (req.body.email === "" || req.body.name === "" || req.body.type === "") {
         return res.status(400).json({
             message: "EMAIL , NAME AND TYPE ARE REQUIRED"
         })
-     }
+    }
 
-     let ack = await User.insertOne({
+    let password = await hashPassword(req.body.fir_pass);
+
+    let user = await User.insertOne({
         username: req.body.username,
         email: req.body.email,
-        password: req.body.fir_pass,
+        password: password,
         type: req.body.type
-     })
+    })
 
-     if (ack){
+    if (user) {
+        let getToken = generateToken(user._id);
+
+        res.cookie('Grocery_User', getToken, {
+            httpOnly: true,
+            secure: false,
+            sameSite: "lax",
+            path: "/",
+            maxAge: 7 * 24 * 60 * 60 * 1000
+        });
+
+        user.password = undefined;
         return res.status(201).json({
             message: "USER CREATED SUCCESSFULLY",
-            ack
+            user
         })
-     }else{
+    } else {
         return res.status(500).json({
             message: "FAILED TO CREATE USER"
         })
-     }
+    }
 
     res.status(200).json({ message: "All is Working Correctly" })
 }
 
-export { login, signup, logout ,loginWithGoogle , loginWithGoogle_CreateUser}; 
+export { login, signup, logout, loginWithGoogle, loginWithGoogle_CreateUser }; 
