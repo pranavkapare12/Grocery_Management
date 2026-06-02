@@ -19,7 +19,7 @@ function Cart() {
                 </div>
                 <div className='w-full basis-2xl py-5 h-full flex flex-wrap justify-center gap-20 overflow-scroll'>
                     {
-                        cart.length !== 0 ?cart.map((data) => <CartCard key={data._id} data={data}/>):"<h1>No products in wishlist</h1>"
+                        cart.length !== 0 ?cart.map((data) => <CartCard key={data._id} data={data} amount={amount} setAmount={setAmount}/>):"<h1>No products in wishlist</h1>"
                     }
                 </div>
             </div>
@@ -35,6 +35,7 @@ function Cart() {
                         <div className="w-full flex-1 ">
                             <button className="w-full h-full bg-[#ED0D0D] text-white active:scale-95 rounded-[5px]" onClick={()=> addToCart([])}>Delete All</button>
                         </div>
+
                         <div className="w-full flex-1 ">
                             <button className="w-full h-full bg-[#0DED48] text-white active:scale-95 rounded-[5px]" onClick={() => navigate('/finalorder')}>Process To Chekout </button>
                         </div>

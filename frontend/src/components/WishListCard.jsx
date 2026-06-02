@@ -1,22 +1,30 @@
 import React from "react";
 import { X, IndianRupee } from 'lucide-react'
-function WishListCard(){
+import { useState } from "react";
+function WishListCard(props){
+    const [data,setData] = useState(props.data);
+    const updateQuantity = (e) =>{
+        if(e.target.value > -1){
+            setData(prev => ({...prev,quantity:Number(e.target.value)}))
+            return;
+        }
+    }
     return(
         <div className=" bg-[#ffffff]  h-8/12 w-3xl sm:h-8/12 md:w-7/12 lg:w-2/12 rounded-xs flex flex-col border" >
             <div className="flex-2 flex flex-col">
                 <div className=" flex-1 flex justify-between items-center px-3 mt-2">
-                    <div className=" text-xl font-bold flex items-center gap-y-2 bg-red-500 px-4 py-2 text-white rounded-xl"><label className="font-semibold text-xl">50</label> <IndianRupee size={20} /></div>
+                    <div className=" text-xl font-bold flex items-center gap-y-2 bg-red-500 px-4 py-2 text-white rounded-xl"><label className="font-semibold text-xl">{data.price}</label> <IndianRupee size={20} /></div>
                 </div>
                 <div className=" flex-5 flex flex-col  items-center ">
-                    <img src="apple.png" alt="" className=" h-50 w-50" />
+                    <img src={data.url} alt="image" className=" h-50 w-50" />
                     <div className="w-full flex items-center justify-center px-10 mt-20 ">
-                        <label className=" text-xl font-bold">Apple</label>
-                        <label className=" text-xl font-bold">(per kg)</label>
+                        <label className=" text-xl font-bold">{data.product_name}</label>
+                        <label className=" text-xl font-bold">(per {data.unit})</label>
                     </div>
                 </div>
             </div>
             <div className="flex-1 flex flex-col gap-y-2 px-4 py-2">
-                <input type="number" className=" flex-1 border px-2 py-1" />
+                <input type="number" className=" flex-1 border px-2 py-1" value={data.quantity || 0} onChange={(e) => updateQuantity(e)} />
                 <button className=" flex-1 bg-[#58FF6E] text-white active:scale-95 rounded-[3px]">Add to Card</button>
             </div>
         </div>

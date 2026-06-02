@@ -7,9 +7,7 @@ import toast,{Toaster} from "react-hot-toast";
 function ShopCard(props) {
     const [detail, setDetail] = useState(null);
     const [ product, setProduct ] = useState(props.product,{quantity:0})
-    const {cart , addToCart} = useContext(AuthContext);
-    
-
+    const {cart , addToCart, wishlist , setWishlist } = useContext(AuthContext);
     const updateQuantity = (e) =>{
         if(e.target.value > -1){
             setProduct(prev => ({...prev,quantity:Number(e.target.value)}))
@@ -19,7 +17,11 @@ function ShopCard(props) {
 
     function findId(){
         let index = cart.findIndex(data => data._id === product._id)
+        return index;
+    }
 
+    function findWishListId(){
+        let index = wishlist.findIndex(data => data._id === product._id)
         return index;
     }
 
@@ -41,6 +43,27 @@ function ShopCard(props) {
         }
         setProduct({...product,quantity:0})
     }
+
+    function insertIntoWishlist(){
+        console.log("Execute")
+        if(product.quantity < 1){
+            toast("Product Quanity Should be greater than 0");
+            return;
+        }
+
+        let index = findWishListId()
+        if(index != -1){
+            const updateCart = wishlist.map(item =>
+                item._id === product._id ? { ...item , quantity : item.quantity + product.quantity}:
+                item
+            )
+            setWishlist(updateCart)
+        }else{
+            setWishlist([...wishlist,product])
+        }
+        setProduct({...product,quantity:0})
+    }
+
     return (
         <>
         <Toaster />
@@ -67,7 +90,9 @@ function ShopCard(props) {
                 </div>
                 <div className="flex-1 flex flex-col gap-y-4 p-5">
                     <input type="number" className=" flex-1 border rounded-xs px-4" value={product.quantity || 0} onChange={(e) => updateQuantity(e)}/>
-                    <button className=" flex-1 bg-[#FFC258] text-white active:scale-95 rounded-[3px]">Add to Wishlist</button>
+                    <button className=" flex-1 bg-[#FFC258] text-white active:scale-95 rounded-[3px]"
+                    onClick={insertIntoWishlist}
+                    >Add to Wishlist</button>
                     <button className=" flex-1 bg-[#58FF6E] text-white active:scale-95 rounded-[3px]" onClick={insertIntoCart}>Add to Card</button>
                 </div>
 
