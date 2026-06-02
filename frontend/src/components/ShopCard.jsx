@@ -45,7 +45,6 @@ function ShopCard(props) {
     }
 
     function insertIntoWishlist(){
-        console.log("Execute")
         if(product.quantity < 1){
             toast("Product Quanity Should be greater than 0");
             return;
@@ -101,7 +100,14 @@ function ShopCard(props) {
             {
                 detail ?
                     <div className=" absolute w-screen h-10/12 bg-gray-200/70 px-10 overflow-scroll flex justify-center items-center">
-                        <DetailCard detail={detail} setDetail={setDetail} product={product} setProduct={updateQuantity} />
+                        <DetailCard 
+                        detail={detail} 
+                        setDetail={setDetail} 
+                        product={product} 
+                        setProduct={updateQuantity} 
+                        insertIntoCart={insertIntoCart}
+                        insertIntoWishlist={insertIntoWishlist}
+                        />
                     </div> : ""
             }
 

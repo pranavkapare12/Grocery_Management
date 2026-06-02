@@ -2,8 +2,8 @@ import React,{useState} from "react";
 import { X ,IndianRupee} from 'lucide-react'
 
 function DetailCard(props) {
-    // console.log(props);
-    const {product,setProduct} = props;
+    console.log(props);
+    const {product,setProduct , insertIntoCart , insertIntoWishlist} = props;
     return (
         <div className=" bg-[#ffffff] w-full h-auto sm:w-3xl sm:h-8/12 md:w-7/12 lg:w-2/12 flex flex-col rounded-xl border " >
             <div className="flex-2 flex flex-col">
@@ -20,9 +20,13 @@ function DetailCard(props) {
                 </div>
             </div>
             <div className="flex-1 flex flex-col gap-y-2 p-5 bg-white rounded-b-xl">
-                <input type="number" className=" flex-1 px-4 border" value={product.quantity}  onChange={(e) => setProduct({...product,quantity:e.target.value})} />
-                <button className=" flex-1 bg-[#FFC258] text-white active:scale-95 rounded-[3px] my-2">Add to Wishlist</button>
-                <button className=" flex-1 bg-[#58FF6E] text-white active:scale-95 rounded-[3px] my-2">Add to Card</button>
+                <input type="number" className=" flex-1 px-4 border" value={product.quantity}  onChange={(e) => setProduct(e)} />
+                <button className=" flex-1 bg-[#FFC258] text-white active:scale-95 rounded-[3px] my-2"
+                onClick={insertIntoWishlist}
+                >Add to Wishlist</button>
+                <button className=" flex-1 bg-[#58FF6E] text-white active:scale-95 rounded-[3px] my-2"
+                onClick={insertIntoCart}
+                >Add to Cart</button>
             </div>
         </div>
     )

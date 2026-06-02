@@ -4,9 +4,11 @@ import Footer from '../../components/Footer';
 import WishListCard from '../../components/WishListCard';
 import { useContext } from 'react';
 import { AuthContext } from '../../context/AuthProvider';
+import { useNavigate } from 'react-router-dom';
 
 function Wishlist() {
     const {wishlist , setWishlist } = useContext(AuthContext);
+    const navigation = useNavigate();
     return (
         <div className=' w-screen h-screen' style={{ fontFamily: "'Inria Sans', sans-serif" }}>
             <div className='w-full flex items-center justify-center my-5'><label className='text-2xl font-semibold'>PRODUCTS ADDED</label></div>
@@ -14,7 +16,7 @@ function Wishlist() {
                 {
                     wishlist.length !== 0 ? 
                     wishlist.map((data)=> <WishListCard data={data} key={data._id}/>)
-                    : "<h1>WISHLIST IS EMPTY</h1>"
+                    : <h1>WISHLIST IS EMPTY</h1>
                 }
             </div>
             <div className='w-full h-2/12 flex justify-center mt-8'>
@@ -23,10 +25,10 @@ function Wishlist() {
                         <label className="text-xl font-semibold">GREAND TOTAL :: 3000 RS</label>
                     </div>
                     <div className="w-full flex-1 ">
-                        <button className="w-full h-full bg-[#EDC70D] text-white active:scale-95 rounded-[5px]">Continue Shopping</button>
+                        <button className="w-full h-full bg-[#EDC70D] text-white active:scale-95 rounded-[5px]" onClick={()=> navigation('/shop')}>Continue Shopping</button>
                     </div>
                     <div className="w-full flex-1 ">
-                        <button className="w-full h-full bg-[#ED0D0D] text-white active:scale-95 rounded-[5px]">Delete All</button>
+                        <button className="w-full h-full bg-[#ED0D0D] text-white active:scale-95 rounded-[5px]" onClick={()=> setWishlist([])}>Delete All</button>
                     </div>
                 </div>
             </div>

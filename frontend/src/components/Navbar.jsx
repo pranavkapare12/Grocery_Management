@@ -5,8 +5,9 @@ import { CircleUser } from 'lucide-react';
 import { useContext, useState } from 'react';
 import axios from 'axios';
 
+
 function Navbar() {
-    const { user, setUser } = useContext(AuthContext);
+    const { user, setUser , wishlist , cart} = useContext(AuthContext);
     const [loding, setLoading] = useState(false);
     async function logout() {
         try {
@@ -59,11 +60,11 @@ function Navbar() {
                         </Link>
                         <Link to="/wishlist" className='flex flex-row place-items-end'>
                             <img src="/heart.png" className='size-8' />
-                            <span className=' relative border-0 text-sm'>0</span>
+                            <span className=' relative border-0 text-sm'>{wishlist.length}</span>
                         </Link>
                         <Link to="/cart" className='flex flex-row place-items-end'>
                             <img src="/shopping-cart.png" className=' size-8' />
-                            <span className=' relative border-0 text-sm'>0</span>
+                            <span className=' relative border-0 text-sm'>{cart.length}</span>
                         </Link>
 
                     </> : ""
