@@ -15,6 +15,9 @@ function Shop(){
         if (filterValue){
             product = Db_product.filter(data => data.category === filterValue)
             setProduct(product)
+            // let temp = JSON.stringify(Db_product); 
+            // console.log(temp)
+            // console.log(JSON.parse(temp))
         }
     }
     useEffect(()=>{setValue()},[filterValue])
@@ -47,3 +50,5 @@ function Shop(){
     )
 }
 export default Shop;
+
+// Winter Survivor Protocol

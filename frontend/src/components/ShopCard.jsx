@@ -1,21 +1,49 @@
 import { Eye, IndianRupee } from "lucide-react";
-import { useState } from "react";
+import { useState , useContext} from "react";
 import DetailCard from "./DetailCard";
-
+import { AuthContext } from "../context/AuthProvider";
+import toast,{Toaster} from "react-hot-toast";
 
 function ShopCard(props) {
     const [detail, setDetail] = useState(null);
-    const [ product, setProduct ] = useState(props.product)
+    const [ product, setProduct ] = useState(props.product,{quantity:0})
+    const {cart , addToCart} = useContext(AuthContext);
+    
 
     const updateQuantity = (e) =>{
         if(e.target.value > -1){
-            setProduct(prev => ({...prev,quantity:e.target.value}))
+            setProduct(prev => ({...prev,quantity:Number(e.target.value)}))
             return;
         }
     }
-    // console.log(product)
+
+    function findId(){
+        let index = cart.findIndex(data => data._id === product._id)
+
+        return index;
+    }
+
+    function insertIntoCart(){
+        if(product.quantity < 1){
+            toast("Product Quanity Should be greater than 0");
+            return;
+        }
+
+        let index = findId()
+        if(index != -1){
+            const updateCart = cart.map(item =>
+                item._id === product._id ? { ...item , quantity : item.quantity + product.quantity}:
+                item
+            )
+            addToCart(updateCart)
+        }else{
+            addToCart([...cart,product])
+        }
+        setProduct({...product,quantity:0})
+    }
     return (
         <>
+        <Toaster />
             <div className='bg-[#ffffff] h-9/12 basis-80 flex flex-col p-2 rounded-[3px] border'>
                 <div className="w-full basis-10 flex place-items-center justify-between px-2">
                     <div className=" bg-[#FF4545] rounded-[5px] w-auto flex flex-row place-items-center gap-3 justify-between px-1 py-2 font-bold text-white">
@@ -38,9 +66,9 @@ function ShopCard(props) {
                     </div>
                 </div>
                 <div className="flex-1 flex flex-col gap-y-4 p-5">
-                    <input type="number" className=" flex-1 border rounded-xs px-4" value={product.quantity} onChange={(e) => updateQuantity(e)}/>
+                    <input type="number" className=" flex-1 border rounded-xs px-4" value={product.quantity || 0} onChange={(e) => updateQuantity(e)}/>
                     <button className=" flex-1 bg-[#FFC258] text-white active:scale-95 rounded-[3px]">Add to Wishlist</button>
-                    <button className=" flex-1 bg-[#58FF6E] text-white active:scale-95 rounded-[3px]">Add to Card</button>
+                    <button className=" flex-1 bg-[#58FF6E] text-white active:scale-95 rounded-[3px]" onClick={insertIntoCart}>Add to Card</button>
                 </div>
 
                 {/* This is to view details of the product in details */}

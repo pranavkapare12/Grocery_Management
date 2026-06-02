@@ -26,7 +26,7 @@ function Home(){
                         <NavigationCard 
                         imgUrl={"fruits.png"} 
                         route={"/shop"} 
-                        head={"Fruits"}
+                        head={"Fruit"}
                         content={"Fresh, juicy, and naturally sweet fruits sourced from trusted farms. Rich in vitamins, minerals, and antioxidants, they are perfect for a healthy and refreshing diet."}
                         />
                         <NavigationCard 
