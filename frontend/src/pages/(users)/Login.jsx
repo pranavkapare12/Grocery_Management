@@ -21,10 +21,10 @@ function Login(props) {
             toast.error("ALL FIELDS ARE REQUIRED")
             return;
         }
-// TODO ADD useState and useContext hook
         try {
             const res =await axios.post("http://localhost:3000/auth/login",loginData, {withCredentials: true});
-            const user = res.data;
+            let temp = res.data;
+            setUser(temp);
             toast.success("LOGIN SUCCESSFULL");   
         } catch (error) {
             if (error.response)
