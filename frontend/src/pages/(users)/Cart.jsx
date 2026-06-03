@@ -32,13 +32,13 @@ function Cart() {
                         <div className="w-full flex-1 ">
                             <button className="w-full h-full bg-[#EDC70D] text-white active:scale-95 rounded-[5px]" onClick={() => navigate('/shop')}>Continue Shopping</button>
                         </div>
-                        <div className="w-full flex-1 ">
-                            <button className="w-full h-full bg-[#ED0D0D] text-white active:scale-95 rounded-[5px]" onClick={()=> addToCart([])}>Delete All</button>
-                        </div>
+                        {
+                            cart.length !== 0 ? <div className="w-full flex-1 "><button className="w-full h-full bg-[#ED0D0D] text-white active:scale-95 rounded-[5px]" onClick={()=> addToCart([])}>Delete All</button></div> : ""
+                        }
 
-                        <div className="w-full flex-1 ">
-                            <button className="w-full h-full bg-[#0DED48] text-white active:scale-95 rounded-[5px]" onClick={() => navigate('/finalorder')}>Process To Chekout </button>
-                        </div>
+                        {
+                            cart.length !== 0 ?<div className="w-full flex-1 "><button className="w-full h-full bg-[#0DED48] text-white active:scale-95 rounded-[5px]" onClick={() => navigate('/finalorder')}>Process To Chekout </button></div> : ""
+                        }
                     </div>
                 </div>
             </div>

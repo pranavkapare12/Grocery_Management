@@ -52,7 +52,8 @@ function CartCard(props) {
             </div>
             <div className="flex-1 flex flex-row row gap-x-4 px-5 py-4 bg-white rounded-b-xl">
                 <div className="flex-1 border flex justify-center items-center rounded-xs">
-                    <input type="number" value={data.quantity}  onChange={(e) => updateQuantity(e)}/>
+                    <input type="number" value={data.quantity} 
+                    onChange={(e) => updateQuantity(e)}/>
                 </div>
                 <button className=" flex-1 bg-[#FFD558] text-white active:scale-95 rounded-[3px]"
                 onClick={insertIntoCart}
