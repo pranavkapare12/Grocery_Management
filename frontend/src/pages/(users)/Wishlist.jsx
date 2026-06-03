@@ -25,11 +25,12 @@ function Wishlist() {
                         <label className="text-xl font-semibold">GREAND TOTAL :: 3000 RS</label>
                     </div>
                     <div className="w-full flex-1 ">
-                        <button className="w-full h-full bg-[#EDC70D] text-white active:scale-95 rounded-[5px]" onClick={()=> navigation('/shop')}>Continue Shopping</button>
+                        <button className="w-full h-full max-h-15 bg-[#EDC70D] text-white active:scale-95 rounded-[5px]" onClick={()=> navigation('/shop')}>Continue Shopping</button>
                     </div>
-                    <div className="w-full flex-1 ">
-                        <button className="w-full h-full bg-[#ED0D0D] text-white active:scale-95 rounded-[5px]" onClick={()=> setWishlist([])}>Delete All</button>
-                    </div>
+                    {
+                        wishlist.length !== 0 ? <div className="w-full flex-1 "><button className="w-full h-full bg-[#ED0D0D] text-white active:scale-95 rounded-[5px]" onClick={()=> setWishlist([])}>Delete All</button></div> : ""
+                    }
+
                 </div>
             </div>
             <Footer />
