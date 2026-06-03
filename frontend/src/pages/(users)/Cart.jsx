@@ -8,8 +8,8 @@ import { useContext , useState} from 'react';
 
 function Cart() {
     const navigate = useNavigate();
-    const {cart , addToCart} = useContext(AuthContext);
-    const [amount,setAmount]=useState(0);
+    const {cart , addToCart ,amount} = useContext(AuthContext);
+    
 
     return (
         <div className=' w-screen h-screen' style={{ fontFamily: "'Inria Sans', sans-serif" }}>
@@ -19,7 +19,7 @@ function Cart() {
                 </div>
                 <div className='w-full basis-2xl py-5 h-full flex flex-wrap justify-center gap-20 overflow-scroll'>
                     {
-                        cart.length !== 0 ?cart.map((data) => <CartCard key={data._id} data={data} amount={amount} setAmount={setAmount}/>):<h1>No products in wishlist</h1>
+                        cart.length !== 0 ?cart.map((data) => <CartCard key={data._id} data={data}/>):<h1>No products in wishlist</h1>
                     }
                 </div>
             </div>

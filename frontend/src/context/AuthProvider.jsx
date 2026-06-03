@@ -7,8 +7,9 @@ const AuthProvider = ({ children }) =>{
     const [Db_product,setDbProduct] = useState([]);
     const [cart,addToCart] = useState([]);
     const [wishlist,setWishlist] = useState([]);
+    const [amount,setAmount]=useState(0);
     return(
-        <AuthContext.Provider value={{user,setUser,Db_product,setDbProduct,cart,addToCart,wishlist,setWishlist}}>
+        <AuthContext.Provider value={{user,setUser,Db_product,setDbProduct,cart,addToCart,wishlist,setWishlist,amount,setAmount}}>
             {children}
         </AuthContext.Provider>
     )

@@ -5,7 +5,7 @@ import { AuthContext } from "../context/AuthProvider";
 
 function CartCard(props) {
     const [data, setData ]= useState(props.data);
-    const { cart , addToCart } = useContext(AuthContext);
+    const { cart , addToCart} = useContext(AuthContext);
     function findId(){
         let index = cart.findIndex(index => index._id === data._id)
         return index;

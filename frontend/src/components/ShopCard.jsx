@@ -32,8 +32,9 @@ function ShopCard(props) {
         }
 
         let index = findId()
+        let updateCart;
         if(index != -1){
-            const updateCart = cart.map(item =>
+            updateCart = cart.map(item =>
                 item._id === product._id ? { ...item , quantity : item.quantity + product.quantity}:
                 item
             )

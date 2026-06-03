@@ -2,7 +2,6 @@ import React,{useState} from "react";
 import { X ,IndianRupee} from 'lucide-react'
 
 function DetailCard(props) {
-    console.log(props);
     const {product,setProduct , insertIntoCart , insertIntoWishlist} = props;
     return (
         <div className=" bg-[#ffffff] w-full h-auto sm:w-3xl sm:h-8/12 md:w-7/12 lg:w-2/12 flex flex-col rounded-xl border " >
