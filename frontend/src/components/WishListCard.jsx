@@ -1,14 +1,49 @@
 import React from "react";
 import { X, IndianRupee } from 'lucide-react'
-import { useState } from "react";
+import { useState , useContext} from "react";
+import { AuthContext } from "../context/AuthProvider";
 function WishListCard(props){
     const [data,setData] = useState(props.data);
+    const { cart , addToCart ,wishlist , setWishlist} = useContext(AuthContext);
+
+    
+    function findId(){
+        let index = cart.findIndex(index => index._id === data._id)
+        return index;
+    }
+
+    function insertIntoCart(){
+        if(data.quantity < 1){
+            toast("Product Quanity Should be greater than 0");
+            return;
+        }
+
+        let index = findId()
+        if(index != -1){
+            const updateCart = cart.map(item =>
+                item._id === data._id ? { ...item , quantity : item.quantity + data.quantity}:
+                item
+            )
+            addToCart(updateCart)
+        }else{
+            addToCart([...cart,data])
+        }
+
+        let filterData = wishlist.filter(product_data => product_data._id !== data._id);
+        setWishlist(filterData)
+
+        // setProduct({...product,quantity:0})
+    }
+
+
     const updateQuantity = (e) =>{
         if(e.target.value > -1){
             setData(prev => ({...prev,quantity:Number(e.target.value)}))
             return;
         }
     }
+
+
     return(
         <div className=" bg-[#ffffff]  h-8/12 w-3xl sm:h-8/12 md:w-7/12 lg:w-2/12 rounded-xs flex flex-col border" >
             <div className="flex-2 flex flex-col">
@@ -25,7 +60,9 @@ function WishListCard(props){
             </div>
             <div className="flex-1 flex flex-col gap-y-2 px-4 py-2">
                 <input type="number" className=" flex-1 border px-2 py-1" value={data.quantity || 0} onChange={(e) => updateQuantity(e)} />
-                <button className=" flex-1 bg-[#58FF6E] text-white active:scale-95 rounded-[3px]">Add to Card</button>
+                <button className=" flex-1 bg-[#58FF6E] text-white active:scale-95 rounded-[3px]"
+                onClick={insertIntoCart}
+                >Add to Card</button>
             </div>
         </div>
     )
