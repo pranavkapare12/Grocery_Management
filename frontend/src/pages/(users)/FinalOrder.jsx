@@ -1,7 +1,12 @@
 import react, { useState, useContext } from 'react';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
+import { AuthContext } from '../../context/AuthProvider';
+import axios from 'axios';
+
 function FinalOrder() {
+
+    const { cart , addToCart , amount , setAmount} = useContext(AuthContext);
 
     const [formdata, setFormdata] = useState({
         name: "",
@@ -13,6 +18,8 @@ function FinalOrder() {
         state: "",
         country: "",
         pincode: "",
+        product:[],
+        total:0
 
     })
 
@@ -20,6 +27,7 @@ function FinalOrder() {
         try {
             if (!navigator.geolocation) {
                 console.log('Geolocation is not supported by your browser');
+                return;
             }
             let latitude, longitude;
             let temp;
@@ -34,7 +42,9 @@ function FinalOrder() {
                         city: data.county,
                         state: data.state,
                         country: data.country,
-                        pincode: data.postcode
+                        pincode: data.postcode,
+                        product: cart,
+                        total:amount
                     })
                 });
             })
@@ -44,9 +54,14 @@ function FinalOrder() {
         }
     }
 
-    const submitOrder = () => {
-        // alert('order placed successfully');
-        console.log(formdata)
+    const submitOrder = async () => {
+        try {
+            let res =await axios.post("http://localhost:3000/order/data",formdata,{withCredentials:true})
+            console.log(res)
+            
+        } catch (error) {
+            console.log(error)
+        }
     }
     return (
         <div className=' w-screen h-screen' style={{ fontFamily: "'Inria Sans', sans-serif" }}>
