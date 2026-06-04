@@ -8,7 +8,7 @@ import { useContext , useState} from 'react';
 
 function Cart() {
     const navigate = useNavigate();
-    const {cart , addToCart ,amount} = useContext(AuthContext);
+    const {cart , addToCart , amount} = useContext(AuthContext);
     
 
     return (
@@ -27,7 +27,7 @@ function Cart() {
                 <div className="flex flex-row h-full w-3/12">
                     <div className="flex-1 h-full w-8/12 sm:w-3/5 md:w-2/5 lg:w-2/12 flex flex-col border py-3 px-10 gap-2">
                         <div className="w-full flex-1 flex justify-center items-center">
-                            <label className="text-xl font-semibold">GREAND TOTAL :: {amount} RS</label>
+                            <label className="text-xl font-semibold">GREAND TOTAL :: { amount } RS</label>
                         </div>
                         <div className="w-full flex-1 ">
                             <button className="w-full h-full bg-[#EDC70D] text-white active:scale-95 rounded-[5px]" onClick={() => navigate('/shop')}>Continue Shopping</button>

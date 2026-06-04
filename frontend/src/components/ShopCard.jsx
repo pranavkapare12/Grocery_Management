@@ -1,5 +1,5 @@
 import { Eye, IndianRupee } from "lucide-react";
-import { useState , useContext} from "react";
+import { useState , useContext , useEffect} from "react";
 import DetailCard from "./DetailCard";
 import { AuthContext } from "../context/AuthProvider";
 import toast,{Toaster} from "react-hot-toast";
@@ -7,7 +7,7 @@ import toast,{Toaster} from "react-hot-toast";
 function ShopCard(props) {
     const [detail, setDetail] = useState(null);
     const [ product, setProduct ] = useState(props.product,{quantity:0})
-    const {cart , addToCart, wishlist , setWishlist } = useContext(AuthContext);
+    const {cart , addToCart, wishlist , setWishlist , setAmount} = useContext(AuthContext);
     const updateQuantity = (e) =>{
         if(e.target.value > -1){
             setProduct(prev => ({...prev,quantity:Number(e.target.value)}))
@@ -63,6 +63,18 @@ function ShopCard(props) {
         }
         setProduct({...product,quantity:0})
     }
+
+    useEffect(()=>{
+        if(cart.length != 0){
+            let value =0;
+            cart.map((data)=>{
+                value = value + (data.quantity * data.price)
+            })
+            setAmount(value)
+        }
+    },[cart])
+
+
 
     return (
         <>
