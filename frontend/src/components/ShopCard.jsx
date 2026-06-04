@@ -7,7 +7,7 @@ import toast,{Toaster} from "react-hot-toast";
 function ShopCard(props) {
     const [detail, setDetail] = useState(null);
     const [ product, setProduct ] = useState(props.product,{quantity:0})
-    const {cart , addToCart, wishlist , setWishlist , setAmount} = useContext(AuthContext);
+    const {cart , addToCart, wishlist , setWishlist , setAmount ,setWishlist_amount} = useContext(AuthContext);
     const updateQuantity = (e) =>{
         if(e.target.value > -1){
             setProduct(prev => ({...prev,quantity:Number(e.target.value)}))
@@ -73,6 +73,16 @@ function ShopCard(props) {
             setAmount(value)
         }
     },[cart])
+
+    useEffect(()=>{
+        if(wishlist.length != 0){
+            let value =0;
+            cart.map((data)=>{
+                value = value + (data.quantity * data.price)
+            })
+            setWishlist_amount(value)
+        }
+    },[wishlist])
 
 
 

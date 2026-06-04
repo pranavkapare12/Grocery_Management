@@ -4,7 +4,7 @@ import { useState , useContext , useEffect} from "react";
 import { AuthContext } from "../context/AuthProvider";
 function WishListCard(props){
     const [data,setData] = useState(props.data);
-    const { cart , addToCart ,wishlist , setWishlist , setAmount} = useContext(AuthContext);
+    const { cart , addToCart ,wishlist , setWishlist , setAmount ,setWishlist_amount} = useContext(AuthContext);
 
     
     function findId(){
@@ -51,6 +51,16 @@ function WishListCard(props){
             setAmount(value)
         }
     },[cart])
+
+    useEffect(()=>{
+        if(wishlist.length != 0){
+            let value =0;
+            cart.map((data)=>{
+                value = value + (data.quantity * data.price)
+            })
+            setWishlist_amount(value)
+        }
+    },[wishlist])
 
 
     return(
