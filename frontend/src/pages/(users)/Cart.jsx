@@ -8,7 +8,7 @@ import { useContext , useState} from 'react';
 
 function Cart() {
     const navigate = useNavigate();
-    const {cart , addToCart , amount} = useContext(AuthContext);
+    const {cart , addToCart , amount , setAmount} = useContext(AuthContext);
     
 
     return (
@@ -30,12 +30,11 @@ function Cart() {
                             <label className="text-xl font-semibold">GREAND TOTAL :: { amount } RS</label>
                         </div>
                         <div className="w-full flex-1 ">
-                            <button className="w-full h-full bg-[#EDC70D] text-white active:scale-95 rounded-[5px]" onClick={() => navigate('/shop')}>Continue Shopping</button>
+                            <button className="w-full h-full max-h-15 bg-[#EDC70D] text-white active:scale-95 rounded-[5px]" onClick={() => navigate('/shop')}>Continue Shopping</button>
                         </div>
                         {
-                            cart.length !== 0 ? <div className="w-full flex-1 "><button className="w-full h-full bg-[#ED0D0D] max-h-15 text-white active:scale-95 rounded-[5px]" onClick={()=> addToCart([])}>Delete All</button></div> : ""
+                            cart.length !== 0 ? <div className="w-full flex-1 "><button className="w-full h-full bg-[#ED0D0D] max-h-15 text-white active:scale-95 rounded-[5px]" onClick={()=> {addToCart([]),setAmount(0)}}>Delete All</button></div> : ""
                         }
-
                         {
                             cart.length !== 0 ?<div className="w-full flex-1 "><button className="w-full h-full max-h-15 bg-[#0DED48] text-white active:scale-95 rounded-[5px]" onClick={() => navigate('/finalorder')}>Process To Chekout </button></div> : ""
                         }

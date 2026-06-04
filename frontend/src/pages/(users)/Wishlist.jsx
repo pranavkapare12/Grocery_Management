@@ -7,7 +7,7 @@ import { AuthContext } from '../../context/AuthProvider';
 import { useNavigate } from 'react-router-dom';
 
 function Wishlist() {
-    const {wishlist , setWishlist , wishlist_amount} = useContext(AuthContext);
+    const {wishlist , setWishlist , wishlist_amount , setWishlist_amount} = useContext(AuthContext);
     const navigation = useNavigate();
     return (
         <div className=' w-screen h-screen' style={{ fontFamily: "'Inria Sans', sans-serif" }}>
@@ -28,7 +28,7 @@ function Wishlist() {
                         <button className="w-full h-full max-h-15 bg-[#EDC70D] text-white active:scale-95 rounded-[5px]" onClick={()=> navigation('/shop')}>Continue Shopping</button>
                     </div>
                     {
-                        wishlist.length !== 0 ? <div className="w-full flex-1 "><button className="w-full h-full bg-[#ED0D0D] text-white active:scale-95 rounded-[5px]" onClick={()=> setWishlist([])}>Delete All</button></div> : ""
+                        wishlist.length !== 0 ? <div className="w-full flex-1 "><button className="w-full h-full bg-[#ED0D0D] text-white active:scale-95 rounded-[5px]" onClick={()=> {setWishlist([]),setWishlist_amount(0)}}>Delete All</button></div> : ""
                     }
 
                 </div>
