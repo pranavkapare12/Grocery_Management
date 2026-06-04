@@ -3,6 +3,7 @@ import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 import { AuthContext } from '../../context/AuthProvider';
 import axios from 'axios';
+import toast,{Toaster} from 'react-hot-toast';
 
 function FinalOrder() {
 
@@ -37,6 +38,7 @@ function FinalOrder() {
                 longitude = data.longitude;
                 const temp = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`).then(res => res.json()).then((data)=>{
                     data = data.address;
+                    console.log(data)
                     setFormdata({...formdata,
                         address: data.county +","+data.state_district+","+data.state+","+data.country+", PINCODE "+ data.postcode,
                         city: data.county,
@@ -57,14 +59,19 @@ function FinalOrder() {
     const submitOrder = async () => {
         try {
             let res =await axios.post("http://localhost:3000/order/data",formdata,{withCredentials:true})
-            console.log(res)
+            if (res.status === 200){
+                toast.success("ORDER PLACE SUCCESSFULLF");
+            }else{
+                toast.error("FAILED ORDER PLACE SUCCESSFULLF");
+            }
             
         } catch (error) {
-            console.log(error)
+            toast.error("FAILED ORDER PLACE SUCCESSFULLF");
         }
     }
     return (
         <div className=' w-screen h-screen' style={{ fontFamily: "'Inria Sans', sans-serif" }}>
+            <Toaster />
             <div className="flex w-full justify-center place-items-center text-2xl font-bold px-2 sm:px-10 md:px-10 lg:px-20 my-3">
                 <div className="flex-1 flex flex-col flex-wrap justify-center border p-4">
                     <div className="flex-1 flex justify-center items-center bg-black p-3">
