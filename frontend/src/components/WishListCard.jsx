@@ -31,8 +31,9 @@ function WishListCard(props){
 
         let filterData = wishlist.filter(product_data => product_data._id !== data._id);
         setWishlist(filterData)
-
-        // setProduct({...product,quantity:0})
+        if(filterData.length === 0){
+            setWishlist_amount(0)
+        }
     }
 
     const updateQuantity = (e) =>{
@@ -54,11 +55,13 @@ function WishListCard(props){
 
     useEffect(()=>{
         if(wishlist.length != 0){
-            let value =0;
-            cart.map((data)=>{
+            let value = 0;
+            wishlist.map((data)=>{
                 value = value + (data.quantity * data.price)
             })
             setWishlist_amount(value)
+        }else{
+            setWishlist_amount(0)
         }
     },[wishlist])
 

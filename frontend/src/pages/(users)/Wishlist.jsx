@@ -2,12 +2,24 @@ import react from 'react';
 import Navbar from '../../components/Navbar'
 import Footer from '../../components/Footer';
 import WishListCard from '../../components/WishListCard';
-import { useContext } from 'react';
+import { useContext , useEffect} from 'react';
 import { AuthContext } from '../../context/AuthProvider';
 import { useNavigate } from 'react-router-dom';
 
 function Wishlist() {
     const {wishlist , setWishlist , wishlist_amount , setWishlist_amount} = useContext(AuthContext);
+
+    useEffect(()=>{
+        if(wishlist.length != 0){
+            let value =0;
+            wishlist.map((data)=>{
+                value = value + (data.quantity * data.price)
+            })
+            setWishlist_amount(value)
+        }
+    },[wishlist])
+    
+
     const navigation = useNavigate();
     return (
         <div className=' w-screen h-screen' style={{ fontFamily: "'Inria Sans', sans-serif" }}>
