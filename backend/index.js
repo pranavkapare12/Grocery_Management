@@ -7,6 +7,7 @@ import filerouter from "./Routes/Image.routes.js";
 import cookieParser from "cookie-parser";
 import datarouter from "./Routes/Data.routes.js";
 import InfoRouter from "./Routes/Info.routes.js"
+import OrderRouter from "./Routes/Order.routes.js";
 
 dotenv.config();
 const app = express();
@@ -30,6 +31,9 @@ app.use("/data",datarouter);
 
 // INFO ROUTES
 app.use("/info",InfoRouter);
+
+// ORDER ROUTES
+app.use("/order",OrderRouter);
 
 app.listen(process.env.PORT , () =>{
     console.log("SERVER IS RUNNING ON PORT "+ process.env.PORT);
