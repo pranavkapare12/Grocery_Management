@@ -32,13 +32,13 @@ function FinalOrder() {
             }
             let latitude, longitude;
             let temp;
+            cart.map((data) => {data.stock=undefined,data.createdAt=undefined,data.updatedAt=undefined})
             navigator.geolocation.getCurrentPosition(async (position) => {
                 let data = position.coords;
                 latitude = data.latitude;
                 longitude = data.longitude;
                 const temp = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`).then(res => res.json()).then((data)=>{
                     data = data.address;
-                    console.log(data)
                     setFormdata({...formdata,
                         address: data.county +","+data.state_district+","+data.state+","+data.country+", PINCODE "+ data.postcode,
                         city: data.county,
@@ -68,6 +68,9 @@ function FinalOrder() {
         } catch (error) {
             toast.error("FAILED ORDER PLACE SUCCESSFULLF");
         }
+        setFormdata({})
+        addToCart([])
+        setAmount(0)
     }
     return (
         <div className=' w-screen h-screen' style={{ fontFamily: "'Inria Sans', sans-serif" }}>
