@@ -1,11 +1,11 @@
 import React from "react";
 import { X, IndianRupee } from 'lucide-react'
-import { useState, useContext } from "react";
+import { useState, useContext , useEffect} from "react";
 import { AuthContext } from "../context/AuthProvider";
 
 function CartCard(props) {
     const [data, setData ]= useState(props.data);
-    const { cart , addToCart} = useContext(AuthContext);
+    const { cart , addToCart , setAmount} = useContext(AuthContext);
     function findId(){
         let index = cart.findIndex(index => index._id === data._id)
         return index;
@@ -35,6 +35,18 @@ function CartCard(props) {
             return;
         }
     }
+
+    useEffect(()=>{
+        if(cart.length != 0){
+            let value = 0;
+            cart.map((data)=>{
+                value = value + (data.quantity * data.price)
+            })
+            setAmount(value)
+        }
+    },[cart])
+    
+
     return (
         <div className=" bg-[#ffffff] w-full h-12/12 sm:w-3xl sm:h-9/12 md:w-7/12 lg:w-2/12 flex flex-col border rounded-xs" >
             <div className="flex-2 flex flex-col">

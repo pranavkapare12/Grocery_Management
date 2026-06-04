@@ -1,10 +1,10 @@
 import React from "react";
 import { X, IndianRupee } from 'lucide-react'
-import { useState , useContext} from "react";
+import { useState , useContext , useEffect} from "react";
 import { AuthContext } from "../context/AuthProvider";
 function WishListCard(props){
     const [data,setData] = useState(props.data);
-    const { cart , addToCart ,wishlist , setWishlist} = useContext(AuthContext);
+    const { cart , addToCart ,wishlist , setWishlist , setAmount} = useContext(AuthContext);
 
     
     function findId(){
@@ -35,13 +35,22 @@ function WishListCard(props){
         // setProduct({...product,quantity:0})
     }
 
-
     const updateQuantity = (e) =>{
         if(e.target.value > -1){
             setData(prev => ({...prev,quantity:Number(e.target.value)}))
             return;
         }
     }
+
+    useEffect(()=>{
+        if(cart.length != 0){
+            let value =0;
+            cart.map((data)=>{
+                value = value + (data.quantity * data.price)
+            })
+            setAmount(value)
+        }
+    },[cart])
 
 
     return(
