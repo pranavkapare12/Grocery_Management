@@ -36,6 +36,13 @@ function CartCard(props) {
         }
     }
 
+    function deleteProduct(id){
+        let filterValue = cart.filter(data => data._id !== id)
+        addToCart(filterValue)
+        if(filterValue.length === 0)
+            setAmount(0)
+    }
+
     useEffect(()=>{
         if(cart.length != 0){
             let value = 0;
@@ -52,7 +59,7 @@ function CartCard(props) {
             <div className="flex-2 flex flex-col">
                 <div className=" flex-1 flex justify-between items-center px-3 mt-2">
                     <div className=" text-xl font-bold flex items-center gap-y-2 bg-red-500 px-4 py-2 text-white rounded-xl"><label className="font-semibold text-xl">{data.price}</label> <IndianRupee size={20} /></div>
-                    <div className=" w-10 h-10 flex justify-center items-center cursor-pointer" onClick={() => props.setDetail(null)}><X /></div>
+                    <div className=" w-10 h-10 flex justify-center items-center cursor-pointer" onClick={() => deleteProduct(data._id)}><X /></div>
                 </div>
                 <div className=" flex-6 flex flex-col  items-center ">
                     <img src={data.url} alt="image" className=" h-50 w-50" />
