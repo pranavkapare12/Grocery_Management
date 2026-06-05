@@ -2,6 +2,7 @@ import mongoDb from "../Database/DbConnection.js"
 import orderSchema from "../Database/OrderSchema.js";
 async function makeOrder(req, res) {
     let conn = mongoDb();
+    req.body.customer_id = req.userData._id;
 
     try {
         let ack = await orderSchema.create(req.body);

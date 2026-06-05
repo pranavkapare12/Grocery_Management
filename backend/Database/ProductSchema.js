@@ -37,6 +37,10 @@ const ProductSchema = new Schema({
     unit:{
         type:String,
         require:true
+    },
+    customer_id:{
+        type:String,
+        required:true
     }
 },{ timestamps:true })
 
