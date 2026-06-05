@@ -57,6 +57,17 @@ function FinalOrder() {
     }
 
     const submitOrder = async () => {
+
+        if(cart.length === 0){
+            toast("CART IS EMPTY (ADD SOME PRODUCTS)")
+            return;
+        }
+
+        if (formdata.name === "" || formdata.address === "" || formdata.number === 0 || formdata.email === "" || formdata.city === "" || formdata.state ==="" || formdata.country === "" || formdata.pincode === ""){
+            toast("ALL FIELDS ARE REQUIRED")
+            return;
+        }
+
         try {
             let res =await axios.post("http://localhost:3000/order/data",formdata,{withCredentials:true})
             if (res.status === 200){
