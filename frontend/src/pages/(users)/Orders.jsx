@@ -2,6 +2,15 @@ import react from 'react';
 import Navbar from '../../components/Navbar'
 import Footer from '../../components/Footer'
 
+function Provider(props){
+    return(
+    <div className="flex flex-row border w-full bg-white ">
+        <label className=' flex-2 border-y-0 border-l-0 border p-2 rounded-r-[5px]'>{props.keys}</label>
+        <label className=' flex-8 p-2'>{props.value}</label>
+    </div>
+    )
+}
+
 function orderTemplate(props) {
     var classlg = 'lg:w-11/12 bg-amber-300'
 
@@ -11,42 +20,15 @@ function orderTemplate(props) {
                 <div className="flex justify-center place-items-center w-full ">
                     <label className=' font-bold'>ORDER</label>
                 </div>
-                <div className="flex flex-row border w-full bg-white ">
-                    <label className=' flex-2 border-y-0 border-l-0 border p-2 rounded-r-[5px]'>NAME</label>
-                    <label className=' flex-8 p-2'>Pranav Kapare</label>
-                </div>
-                <div className="flex flex-row border w-full bg-white ">
-                    <label className=' flex-2 border-y-0 border-l-0 border p-2 rounded-r-[5px]'>EMAIL</label>
-                    <label className=' flex-8 p-2'>PranavKapare12345@gmail.com</label>
-                </div>
-                <div className="flex flex-row border w-full bg-white ">
-                    <label className=' flex-2 border-y-0 border-l-0 border p-2 rounded-r-[5px]'>METHOD</label>
-                    <label className=' flex-8 p-2'>UPI</label>
-                </div>
-                <div className="flex flex-row border w-full bg-white ">
-                    <label className=' flex-2 border-y-0 border-l-0 border p-2 rounded-r-[5px]'>ADDRESS</label>
-                    <label className=' flex-8 p-2'>Hadapsar , Godhalenagar</label>
-                </div>
-                <div className="flex flex-row border w-full bg-white ">
-                    <label className=' flex-2 border-y-0 border-l-0 border p-2 rounded-r-[5px]'>PHONE NO</label>
-                    <label className=' flex-8 p-2'>9156027419</label>
-                </div>
-                <div className="flex flex-row border w-full bg-white ">
-                    <label className=' flex-2 border-y-0 border-l-0 border p-2 rounded-r-[5px]'>CITY</label>
-                    <label className=' flex-8 p-2'>PUNE</label>
-                </div>
-                <div className="flex flex-row border w-full bg-white ">
-                    <label className=' flex-2 border-y-0 border-l-0 border p-2 rounded-r-[5px]'>COUNTYR</label>
-                    <label className=' flex-8 p-2'>INDIA</label>
-                </div>
-                <div className="flex flex-row border w-full bg-white ">
-                    <label className=' flex-2 border-y-0 border-l-0 border p-2 rounded-r-[5px]'>STATE</label>
-                    <label className=' flex-8 p-2'>MAHARASHTRA</label>
-                </div>
-                <div className="flex flex-row border w-full bg-white ">
-                    <label className=' flex-2 border-y-0 border-l-0 border p-2 rounded-r-[5px]'>PINCODE</label>
-                    <label className=' flex-8 p-2'>411028</label>
-                </div>
+                <Provider keys={"Name"} value={"Pranav Kapare"}/>
+                <Provider keys={"Email"} value={"PranavKapare12345@gmail.com"}/>
+                <Provider keys={"Method"} value={"UPI"}/>
+                <Provider keys={"Address"} value={"Hadapsar , Godhalenagar"}/>
+                <Provider keys={"Phone No"} value={"9156027419"}/>
+                <Provider keys={"City"} value={"Pune"}/>
+                <Provider keys={"Country"} value={"India"}/>
+                <Provider keys={"State"} value={"Maharashtra"}/>
+                <Provider keys={"Pincode"} value={"411028"}/>
             </div>
         </div>
     )
