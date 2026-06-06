@@ -44,6 +44,9 @@ const Schema = new mongoose.Schema({
     total:{
         type:Number,
         require:true
+    },customer_id:{
+        type:String,
+        required:true
     }
 },{timestamps:true})
 
