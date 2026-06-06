@@ -1,15 +1,19 @@
 import mongoDb from "../Database/DbConnection.js";
 import Product from "../Database/ProductSchema.js";
+import orderSchema from "../Database/OrderSchema.js";
 
 async function getData(req, res) {
     let conn = mongoDb();
 
     if (req.userData.type === "Customer") {
         let products = await Product.find({});
-        // console.log(products);
+        let orders = await orderSchema.find({
+            customer_id : req.userData._id
+        })
         return res.status(200).json({
             userData: req.userData,
-            products
+            products,
+            orders
         })
     }
 
