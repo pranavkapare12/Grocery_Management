@@ -35,7 +35,7 @@ import Landing from './components/LandingPage'
 
 import axios from 'axios'
 function App() {
-  const { user, setUser, Db_product, setDbProduct } = useContext(AuthContext);
+  const { user, setUser, Db_product, setDbProduct ,setOrders } = useContext(AuthContext);
   const [login, setLogin] = useState(false);
   async function fetchData() {
     try {
@@ -43,6 +43,7 @@ function App() {
       const data = await axios.get("http://localhost:3000/data/", { withCredentials: true }).then((data) => {
         setUser(data.data.userData)
         setDbProduct(data.data.products)
+        setOrders(data.data.orders || []);
       });
     } catch (error) {
 
