@@ -15,7 +15,7 @@ function Navbar() {
             setLoading(true)
             const conform = window.confirm("Do you Want to logout")
             if (conform) {
-                let result = await axios.post(`${API}/auth/logout`, {} ,{ withCredentials: true }).then((data) => {
+                let result = await axios.post(`${API}auth/logout`, {} ,{ withCredentials: true }).then((data) => {
                     setUser(null)
                 })
             } else {

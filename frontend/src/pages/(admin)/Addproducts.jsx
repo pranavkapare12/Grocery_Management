@@ -46,7 +46,7 @@ function Addproducts() {
         let result;
         try {
             setloading(true);
-            result = await axios.post(`${API}/file/uplode`, formData, { withCredentials: true });
+            result = await axios.post(`${API}file/uplode`, formData, { withCredentials: true });
             setDbProduct([...Db_product, result.data.result])
             if (result.status === 200) {
                 toast.success("Product Added Successfully")

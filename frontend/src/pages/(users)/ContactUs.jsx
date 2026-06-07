@@ -19,7 +19,7 @@ function ContactUs() {
             return;
         }
         try {
-            const ack = axios.post(`${API}/info/data`,formData,{
+            const ack = axios.post(`${API}info/data`,formData,{
                 withCredentials:true
             }).then((data)=>{
                 toast.success("Data Added Successfully")

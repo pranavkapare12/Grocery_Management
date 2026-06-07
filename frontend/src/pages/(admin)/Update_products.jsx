@@ -34,7 +34,7 @@ function UpdateProducts() {
         let result;
         try {
             setloading(true);
-            result = await axios.put(`${API}/data/update`, product, { withCredentials: true });
+            result = await axios.put(`${API}data/update`, product, { withCredentials: true });
             if (result.status === 200) {
                 toast.success("Product Added Successfully")
                 let data = Db_product.filter(data => data._id !== product._id);

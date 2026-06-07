@@ -57,7 +57,7 @@ function Landing() {
             return;
         }
 
-        const result= axios.post(`${API}/auth/google/create`,userData,{
+        const result= axios.post(`${API}auth/google/create`,userData,{
             withCredentials:true
         }).then((data)=>{
             setUser(data.data.user)

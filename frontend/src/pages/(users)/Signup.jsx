@@ -38,7 +38,7 @@ function Signup() {
             type:userData.type
         }
         try {
-            let res = await axios.post(`${API}/auth/signup`,finalData,{withCredentials: true});
+            let res = await axios.post(`${API}auth/signup`,finalData,{withCredentials: true});
             const user = res.data;
             setUser(user)
             toast.success("ACCOUNTED CREATED");

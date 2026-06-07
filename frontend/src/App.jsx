@@ -41,7 +41,7 @@ function App() {
   async function fetchData() {
     try {
       setLogin(true)
-      const data = await axios.get(`${API}/data/`, { withCredentials: true }).then((data) => {
+      const data = await axios.get(`${API}data/`, { withCredentials: true }).then((data) => {
         setUser(data.data.userData)
         setDbProduct(data.data.products)
         setOrders(data.data.orders || []);

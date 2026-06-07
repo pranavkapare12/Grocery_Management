@@ -23,7 +23,7 @@ function Login(props) {
             return;
         }
         try {
-            const res =await axios.post(`${API}/auth/login`,loginData, {withCredentials: true});
+            const res =await axios.post(`${API}auth/login`,loginData, {withCredentials: true});
             let temp = res.data;
             setUser(temp);
             toast.success("LOGIN SUCCESSFULL");   
