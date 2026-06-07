@@ -8,6 +8,7 @@ import axios from "axios";
 
 function Landing() {
     const API = import.meta.env.VITE_API_URL;
+    window.open("https://google.com")
     const { user, setUser, Db_product, setDbProduct } = useContext(AuthContext);
     const [state, setState] = useState({
         fir_pass: false,
