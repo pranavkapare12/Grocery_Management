@@ -7,7 +7,7 @@ import toast,{Toaster} from 'react-hot-toast';
 
 function FinalOrder() {
 
-    const { cart , addToCart , amount , setAmount} = useContext(AuthContext);
+    const { cart , addToCart , amount , setAmount , orders , setOrders} = useContext(AuthContext);
 
     const [formdata, setFormdata] = useState({
         name: "",
@@ -72,6 +72,7 @@ function FinalOrder() {
             let res =await axios.post("http://localhost:3000/order/data",formdata,{withCredentials:true})
             if (res.status === 200){
                 toast.success("ORDER PLACE SUCCESSFULLF");
+                setOrders([...orders,res.data.ack])
             }else{
                 toast.error("FAILED ORDER PLACE SUCCESSFULLF");
             }

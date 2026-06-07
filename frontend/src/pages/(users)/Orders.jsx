@@ -16,23 +16,22 @@ function Provider(props){
 function OrderTemplate(props) {
     var classlg = 'lg:w-11/12 bg-amber-300'
     let product = props.product;
-    console.log(product)
 
     return (
         <div className="lg:w-[50%] md:px-10 lg:px-30 flex justify-center">
-            <div className="flex flex-col gap-y-2.5 bg-[#D9D9D9] w-full px-2 lg:px-4 py-2 rounded-xs">
+            <div className="flex flex-col gap-y-2.5 bg-[#D9D9D9] w-full px-2 lg:px-4 py-2 pb-5 rounded-xs">
                 <div className="flex justify-center place-items-center w-full ">
                     <label className=' font-bold'>ORDER</label>
                 </div>
-                <Provider keys={"Name"} value={product.name}/>
-                <Provider keys={"Email"} value={product.email}/>
-                <Provider keys={"Method"} value={product.payment === "COD" ? "cash on delevery" : "UPI"}/>
-                <Provider keys={"Address"} value={product.address}/>
-                <Provider keys={"Phone No"} value={product.number}/>
-                <Provider keys={"City"} value={product.city}/>
-                <Provider keys={"Country"} value={product.country}/>
-                <Provider keys={"State"} value={product.state}/>
-                <Provider keys={"Pincode"} value={product.pincode}/>
+                <Provider keys={"Name"} key={product._id} value={product.name}/>
+                <Provider keys={"Email"}  value={product.email}/>
+                <Provider keys={"Method"}  value={product.payment === "COD" ? "cash on delevery" : "UPI"}/>
+                <Provider keys={"Address"}  value={product.address}/>
+                <Provider keys={"Phone No"}  value={product.number}/>
+                <Provider keys={"City"}  value={product.city}/>
+                <Provider keys={"Country"}  value={product.country}/>
+                <Provider keys={"State"}  value={product.state}/>
+                <Provider keys={"Pincode"}  value={product.pincode}/>
                 {
                     product.product ? 
                     product.product.map((data)=><>
@@ -60,7 +59,7 @@ function Orders() {
             <div className=' w-full mt-5 flex justify-center place-items-center'>
                 <label className='text-2xl font-bold'>Orders Page</label>
             </div>
-            <div className="flex flex-wrap w-full gap-y-2.5 justify-center place-items-center">
+            <div className="flex flex-wrap w-full gap-y-5 justify-center place-items-center">
                 {
                     orders ? orders.map((data)=><OrderTemplate key={data._id} product={data} />) : ""
                 }
