@@ -79,7 +79,7 @@ function Login(props) {
                         <button type="button" name="" className=' h-10/12 w-12/12 px-7 bg-[#42D940] text-white font-bold outline-0 text-2xl rounded-md flex justify-center  gap-7 place-items-center  active:scale-98' placeholder='Enter Name'
                         onClick={() => navigate('/landing')}
                         >
-                            <img src="/google.png" alt="google img" className='h-10' />
+                            <img src={"https://res.cloudinary.com/dxjf0bztc/image/upload/v1780828582/google_fmnfiz.png"} alt="google img" className='h-10' />
                             <label>Login by Google</label>
                         </button>
                     </div>

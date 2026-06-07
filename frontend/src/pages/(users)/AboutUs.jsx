@@ -9,7 +9,7 @@ function AboutUs() {
                 <div className=" basis-150 flex flex-col">
                     <div className=" basis-110 flex flex-col justify-center place-items-center">
                         <div className=" basis-90 w-full flex justify-center place-items-center">
-                            <img src="paper-bag.png" alt="" className=' h-90 w-80' />
+                            <img src="https://res.cloudinary.com/dxjf0bztc/image/upload/v1780829068/paper-bag_hfwjvn.png" alt="" className=' h-90 w-80' />
                         </div>
                         <div className=" text-xl font-bold basis-15 w-full flex justify-center place-items-center">
                             <label>What we Provide?</label>
@@ -31,7 +31,7 @@ function AboutUs() {
                 <div className=" basis-150 flex flex-col">
                     <div className=" basis-110 flex flex-col justify-center place-items-center">
                         <div className=" basis-90 w-full flex justify-center place-items-center">
-                            <img src="about-img-2.png" alt="" className=' h-90 w-80' />
+                            <img src="https://res.cloudinary.com/dxjf0bztc/image/upload/v1780828609/about-img-2_vw48ic.png" alt="" className=' h-90 w-80' />
                         </div>
                         <div className=" text-xl font-bold basis-15 w-full flex justify-center place-items-center">
                             <label>What we Provide?</label>

@@ -4,8 +4,10 @@ import { Link } from 'react-router-dom';
 import toast,{Toaster} from 'react-hot-toast';
 import axios from 'axios';
 import { AuthContext } from '../../context/AuthProvider';
+import { useNavigate } from 'react-router-dom';
 
 function Signup() {
+    const navigate = useNavigate();
     const [showPassword, setShowPassword] = useState(false);
     const [showPassword1, setShowPassword1] = useState(false);
     const {setUser} = useContext( AuthContext );
@@ -119,9 +121,8 @@ function Signup() {
                         onClick={Submit}
                         placeholder='Enter Name' 
                         >Register now</button>
-                        
-                        
-                        <button type="button" name="" className=' h-10/12 w-12/12 px-7 bg-[#42D940] text-white font-bold outline-0 text-sm rounded-md active:scale-98' placeholder='Enter Name' >Sign up by Google</button>
+                        {/* TODO SIGN UP WITH GOOGLE */}
+                        <button type="button" name="" className=' h-10/12 w-12/12 px-7 bg-[#42D940] text-white font-bold outline-0 text-sm rounded-md active:scale-98' placeholder='Enter Name' onClick={() => navigate('/landing')}>Sign up by Google</button>
                     </div>
                     <div className=" basis-10  mx-4 my-0.5 flex justify-center items-center gap-4 ">
                         <label>already have an account</label> <Link to="/login" className='text-green-500 text-xl'> sign in</Link>
