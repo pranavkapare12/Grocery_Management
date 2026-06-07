@@ -13,7 +13,10 @@ dotenv.config();
 const app = express();
 
 app.use(cors({
-    origin:"http://localhost:5173",
+    origin: [
+        "http://localhost:5173",
+        "https://your-project.vercel.app"
+    ],
     credentials: true
 }));
 
@@ -35,6 +38,6 @@ app.use("/info",InfoRouter);
 // ORDER ROUTES
 app.use("/order",OrderRouter);
 
-app.listen(process.env.PORT , () =>{
+app.listen(process.env.PORT||3000, () =>{
     console.log("SERVER IS RUNNING ON PORT "+ process.env.PORT);
 })
