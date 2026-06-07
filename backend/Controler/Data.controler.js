@@ -8,7 +8,7 @@ async function getData(req, res) {
     if (req.userData.type === "Customer") {
         let products = await Product.find({});
         let orders = await orderSchema.find({
-            customer_id : req.userData._id
+            customer_id: req.userData._id
         })
         return res.status(200).json({
             userData: req.userData,
