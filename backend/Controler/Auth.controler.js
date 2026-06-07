@@ -38,7 +38,7 @@ async function login(req, res) {
     res.cookie('Grocery_User', getCookie, {
         httpOnly: true,
         secure: true,
-        sameSite: "lax",
+        sameSite: "none",
         path: "/",
         maxAge: 7 * 24 * 60 * 60 * 1000
     })
@@ -80,7 +80,7 @@ async function signup(req, res) {
     res.cookie('Grocery_User', getToken, {
         httpOnly: true,
         secure: true,
-        sameSite: "lax",
+        sameSite: "none",
         path: "/",
         maxAge: 7 * 24 * 60 * 60 * 1000
     });
@@ -113,7 +113,7 @@ async function loginWithGoogle(req, res) {
         res.cookie('Grocery_User', getToken, {
             httpOnly: true,
             secure: true,
-            sameSite: "lax",
+            sameSite: "none",
             path: "/",
             maxAge: 7 * 24 * 60 * 60 * 1000
         });
@@ -153,7 +153,7 @@ async function loginWithGoogle_CreateUser(req, res) {
         res.cookie('Grocery_User', getToken, {
             httpOnly: true,
             secure: true,
-            sameSite: "lax",
+            sameSite: "none",
             path: "/",
             maxAge: 7 * 24 * 60 * 60 * 1000
         });
