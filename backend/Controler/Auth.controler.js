@@ -91,7 +91,7 @@ function logout(req, res) {
     res.clearCookie('Grocery_User', {
         httpOnly: true,
         secure: true,
-        sameSite: "lax",
+        sameSite: "none",
         path: "/"
     });
     res.status(200).json({ message: "Cookie Clear" })
