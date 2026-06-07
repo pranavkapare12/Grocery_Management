@@ -7,6 +7,7 @@ import toast,{Toaster} from 'react-hot-toast'
 import axios from "axios";
 
 function Landing() {
+    const API = import.meta.env.VITE_API_URL;
     const { user, setUser, Db_product, setDbProduct } = useContext(AuthContext);
     const [state, setState] = useState({
         fir_pass: false,
@@ -26,7 +27,7 @@ function Landing() {
         let temp = {
             email: jwtDate.email
         }
-        const result = axios.post("http://localhost:3000/auth/google", temp, {
+        const result = axios.post(`${API}/auth/google`, temp, {
             withCredentials: true
         }).then((data) => {
             if (data.data.message === "USER NOT FOUND") {
@@ -56,7 +57,7 @@ function Landing() {
             return;
         }
 
-        const result= axios.post("http://localhost:3000/auth/google/create",userData,{
+        const result= axios.post(`${API}/auth/google/create`,userData,{
             withCredentials:true
         }).then((data)=>{
             setUser(data.data.user)

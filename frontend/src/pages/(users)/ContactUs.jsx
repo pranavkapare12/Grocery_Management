@@ -5,6 +5,7 @@ import { useState } from "react"
 import toast,{Toaster} from 'react-hot-toast';
 import axios from 'axios';
 function ContactUs() {
+    const API = import.meta.env.VITE_API_URL;
     const [formData,setFormData]=useState({
         name:"",
         email:"",
@@ -18,7 +19,7 @@ function ContactUs() {
             return;
         }
         try {
-            const ack = axios.post("http://localhost:3000/info/data",formData,{
+            const ack = axios.post(`${API}/info/data`,formData,{
                 withCredentials:true
             }).then((data)=>{
                 toast.success("Data Added Successfully")

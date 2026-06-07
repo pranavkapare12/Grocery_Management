@@ -35,12 +35,13 @@ import Landing from './components/LandingPage'
 
 import axios from 'axios'
 function App() {
+  const API = import.meta.env.VITE_API_URL;
   const { user, setUser, Db_product, setDbProduct ,setOrders } = useContext(AuthContext);
   const [login, setLogin] = useState(false);
   async function fetchData() {
     try {
       setLogin(true)
-      const data = await axios.get("http://localhost:3000/data/", { withCredentials: true }).then((data) => {
+      const data = await axios.get(`${API}/data/`, { withCredentials: true }).then((data) => {
         setUser(data.data.userData)
         setDbProduct(data.data.products)
         setOrders(data.data.orders || []);

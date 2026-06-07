@@ -11,7 +11,7 @@ function Signup() {
     const [showPassword, setShowPassword] = useState(false);
     const [showPassword1, setShowPassword1] = useState(false);
     const {setUser} = useContext( AuthContext );
-
+    const API = import.meta.env.VITE_API_URL;
     const [userData,setUserData]=useState({
       userName:"",
       email:"",
@@ -38,7 +38,7 @@ function Signup() {
             type:userData.type
         }
         try {
-            let res = await axios.post("http://localhost:3000/auth/signup",finalData,{withCredentials: true});
+            let res = await axios.post(`${API}/auth/signup`,finalData,{withCredentials: true});
             const user = res.data;
             setUser(user)
             toast.success("ACCOUNTED CREATED");

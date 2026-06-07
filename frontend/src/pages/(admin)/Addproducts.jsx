@@ -5,7 +5,7 @@ import Navbar from "../../components/Navbar";
 import { AuthContext } from "../../context/AuthProvider";
 
 function Addproducts() {
-
+    const API = import.meta.env.VITE_API_URL;
     const [isloading, setloading] = useState(false);
     const [product, setProduct] = useState({
         name: "",
@@ -46,7 +46,7 @@ function Addproducts() {
         let result;
         try {
             setloading(true);
-            result = await axios.post("http://localhost:3000/file/uplode", formData, { withCredentials: true });
+            result = await axios.post(`${API}/file/uplode`, formData, { withCredentials: true });
             setDbProduct([...Db_product, result.data.result])
             if (result.status === 200) {
                 toast.success("Product Added Successfully")

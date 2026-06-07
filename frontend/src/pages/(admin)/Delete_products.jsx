@@ -6,7 +6,7 @@ import { AuthContext } from "../../context/AuthProvider";
 import { useEffect } from "react";
 
 function DeleteProduct() {
-
+    const API = import.meta.env.VITE_API_URL;
     const [isloading, setloading] = useState(false);
     const { Db_product, setDbProduct } = useContext(AuthContext);
     const [product,setProduct]=useState({})
@@ -19,7 +19,7 @@ function DeleteProduct() {
         }
         try{
             setloading(true);
-            const result =await axios.post("http://localhost:3000/file/delete",product,{withCredentials:true});
+            const result =await axios.post(`${API}/file/delete`,product,{withCredentials:true});
             toast.success("Data is Delete successfully")
             let data = Db_product.filter(data => data._id !== id)
             setDbProduct(data)

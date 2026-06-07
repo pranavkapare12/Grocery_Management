@@ -5,6 +5,7 @@ import Navbar from "../../components/Navbar";
 import { AuthContext } from "../../context/AuthProvider";
 
 function UpdateProducts() {
+    const API = import.meta.env.VITE_API_URL;
     const { Db_product, setDbProduct } = useContext(AuthContext);
     const [isloading, setloading] = useState(false);
     const [product, setProduct] = useState({
@@ -33,7 +34,7 @@ function UpdateProducts() {
         let result;
         try {
             setloading(true);
-            result = await axios.put("http://localhost:3000/data/update", product, { withCredentials: true });
+            result = await axios.put(`${API}/data/update`, product, { withCredentials: true });
             if (result.status === 200) {
                 toast.success("Product Added Successfully")
                 let data = Db_product.filter(data => data._id !== product._id);

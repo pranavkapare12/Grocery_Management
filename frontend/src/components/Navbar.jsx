@@ -7,6 +7,7 @@ import axios from 'axios';
 
 
 function Navbar() {
+    const API = import.meta.env.VITE_API_URL;
     const { user, setUser , wishlist , cart} = useContext(AuthContext);
     const [loding, setLoading] = useState(false);
     async function logout() {
@@ -14,7 +15,7 @@ function Navbar() {
             setLoading(true)
             const conform = window.confirm("Do you Want to logout")
             if (conform) {
-                let result = await axios.post("http://localhost:3000/auth/logout", {} ,{ withCredentials: true }).then((data) => {
+                let result = await axios.post(`${API}/auth/logout`, {} ,{ withCredentials: true }).then((data) => {
                     setUser(null)
                 })
             } else {

@@ -9,6 +9,7 @@ function FinalOrder() {
 
     const {user, cart , addToCart , amount , setAmount , orders , setOrders} = useContext(AuthContext);
     // console.log(user)
+    const API = import.meta.env.VITE_API_URL;
 
     const [formdata, setFormdata] = useState({
         name: "",
@@ -71,7 +72,7 @@ function FinalOrder() {
         }
 
         try {
-            let res =await axios.post("http://localhost:3000/order/data",formdata,{withCredentials:true})
+            let res =await axios.post(`${API}/order/data`,formdata,{withCredentials:true})
             if (res.status === 200){
                 toast.success("ORDER PLACE SUCCESSFULLF");
                 setOrders([...orders,res.data.ack])
