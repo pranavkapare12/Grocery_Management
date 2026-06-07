@@ -29,7 +29,6 @@ function Landing() {
         const result = axios.post("http://localhost:3000/auth/google", temp, {
             withCredentials: true
         }).then((data) => {
-            console.log(data.data.message)
             if (data.data.message === "USER NOT FOUND") {
                 setUserData({ ...userData, email: jwtDate.email, is_req_pass: true , username : jwtDate.name , type:"Customer"})
             } else if (data.data.message === "USER FOUND") {

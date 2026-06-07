@@ -7,7 +7,8 @@ import toast,{Toaster} from 'react-hot-toast';
 
 function FinalOrder() {
 
-    const { cart , addToCart , amount , setAmount , orders , setOrders} = useContext(AuthContext);
+    const {user, cart , addToCart , amount , setAmount , orders , setOrders} = useContext(AuthContext);
+    // console.log(user)
 
     const [formdata, setFormdata] = useState({
         name: "",
@@ -46,7 +47,8 @@ function FinalOrder() {
                         country: data.country,
                         pincode: data.postcode,
                         product: cart,
-                        total:amount
+                        total:amount,
+                        customer_id:user._id
                     })
                 });
             })

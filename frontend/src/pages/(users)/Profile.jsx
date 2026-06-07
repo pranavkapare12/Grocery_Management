@@ -34,7 +34,7 @@ function Profile() {
                         </div>
                         <div className=" flex-1 flex items-center gap-x-4">
                             <label htmlFor="" className="flex-1 text-sm text-gray-800">Create at</label>
-                            <label htmlFor="" className="flex-1 text-sm text-gray-800">{user.createAt.split("T")[0]}</label>
+                            <label htmlFor="" className="flex-1 text-sm text-gray-800">{user.createAt ? user.createAt.split("T")[0] :""}</label>
                         </div>
                         <div className=" flex-1 flex items-center gap-x-4">
                             <label htmlFor="" className="flex-1 text-sm text-gray-800">Type</label>
