@@ -21,7 +21,7 @@ function Landing() {
         is_req_pass: false,
     })
 
-    function loginWithGoogle(data) {
+    async function loginWithGoogle(data) {
         let jwtDate = jwtDecode(data.credential);
         console.log(jwtDate)
         setUserData({ ...userData, email: jwtDate.email })
