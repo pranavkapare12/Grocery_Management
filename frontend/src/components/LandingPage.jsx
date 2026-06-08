@@ -23,14 +23,14 @@ function Landing() {
 
     function loginWithGoogle(data) {
         let jwtDate = jwtDecode(data.credential);
+        console.log(jwtDate)
         setUserData({ ...userData, email: jwtDate.email })
         let temp = {
             email: jwtDate.email
         }
-        const result = axios.post(`${API}/auth/google`, temp, {
+        const result =await axios.post(`${API}/auth/google`, temp, {
             withCredentials: true
         }).then((data) => {
-            console.log(data)
             if (data.data.message === "USER NOT FOUND") {
                 setUserData({ ...userData, email: jwtDate.email, is_req_pass: true , username : jwtDate.name || "USER" , type:"Customer"})
             } else if (data.data.message === "USER FOUND") {
@@ -39,6 +39,8 @@ function Landing() {
         }).catch((err) => {
             console.log(err)
         })
+
+        console.log(result)
     }
 
     function error(err) {
