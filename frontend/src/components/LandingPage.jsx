@@ -31,9 +31,8 @@ function Landing() {
             withCredentials: true
         }).then((data) => {
             if (data.data.message === "USER NOT FOUND") {
-                setUserData({ ...userData, email: jwtDate.email, is_req_pass: true , username : jwtDate.name , type:"Customer"})
+                setUserData({ ...userData, email: jwtDate.email, is_req_pass: true , username : jwtDate.name || "USER" , type:"Customer"})
             } else if (data.data.message === "USER FOUND") {
-                console.log(data.data.user)
                 setUser(data.data.user)
             }
         }).catch((err) => {
