@@ -28,7 +28,7 @@ function Landing() {
         let temp = {
             email: jwtDate.email
         }
-        const result =await axios.post(`${API}/auth/google`, temp, {
+        const result =await axios.post(`${API}auth/google`, temp, {
             withCredentials: true
         }).then((data) => {
             if (data.data.message === "USER NOT FOUND") {
