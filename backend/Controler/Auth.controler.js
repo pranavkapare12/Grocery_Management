@@ -141,10 +141,10 @@ async function loginWithGoogle_CreateUser(req, res) {
     let password = await hashPassword(req.body.fir_pass);
 
     let user = await User.insertOne({
-        username: req.body.username,
+        username: req.body.username || req.body.email.split("@")[0],
         email: req.body.email,
         password: password,
-        type: req.body.type
+        type: req.body.type || "Customer"
     })
 
     if (user) {
