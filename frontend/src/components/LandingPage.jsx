@@ -23,7 +23,6 @@ function Landing() {
 
     async function loginWithGoogle(data) {
         let jwtDate = jwtDecode(data.credential);
-        console.log(jwtDate)
         setUserData({ ...userData, email: jwtDate.email })
         let temp = {
             email: jwtDate.email
