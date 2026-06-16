@@ -5,7 +5,6 @@ async function makeOrder(req, res) {
     try {
         let data = req.body;
         data.customer_id = req.userData._id;
-        console.log(data)
         let ack = await orderSchema.create(req.body);
         if (ack) {
             return res.status(200).json({
