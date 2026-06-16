@@ -37,7 +37,7 @@ function Footer() {
         </div>
         <div className="w-full h-14 flex justify-center place-items-center text-xl">
             <label>
-                © copyright @ 2024 by mr.design | all rights reserved
+                © copyright @ 2026 by mr.pranav kapare | all rights reserved
             </label>
         </div>
         </>
