@@ -3,6 +3,9 @@ import orderSchema from "../Database/OrderSchema.js";
 async function makeOrder(req, res) {
     let conn = mongoDb();
     try {
+        let data = req.body;
+        data.customer_id = req.userData._id;
+        console.log(data)
         let ack = await orderSchema.create(req.body);
         if (ack) {
             return res.status(200).json({
@@ -17,8 +20,6 @@ async function makeOrder(req, res) {
     } catch (error) {
         console.log(error)
     }
-
-    console.log(req.body)
     return res.status(200).json({
         message: "All is working Correctly"
     })
