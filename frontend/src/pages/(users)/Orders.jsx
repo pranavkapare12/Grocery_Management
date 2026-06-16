@@ -40,7 +40,7 @@ function OrderTemplate(props) {
                     <Provider keys={"Category"} value={data.category}/>
                     <Provider keys={"Description"} value={data.description}/>
                     <Provider keys={"Price"} value={data.price}/>
-                    <Provider keys={"Quantity"} value={data.Quantity + data.unit}/>
+                    <Provider keys={"Quantity"} value={data.quantity + data.unit}/>
                     <Provider keys={"Brand"} value={data.brand}/>
                     </> 
                 )
