@@ -4,6 +4,10 @@ import { login, signup, logout ,loginWithGoogle , loginWithGoogle_CreateUser } f
 
 const router = Router();
 
+router.get('/health', (req,res)=>{
+    res.status(200).json({message : "Server is running"})
+})
+
 router.post('/login',login)
 
 router.post('/signup',signup)
