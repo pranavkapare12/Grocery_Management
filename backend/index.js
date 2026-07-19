@@ -23,6 +23,10 @@ app.use(cors({
 app.use(express.json());
 app.use(cookieParser())
 
+app.get('/', (req,res)=>{
+    res.status(200).json({message : "Server is running"})
+})
+
 // AUTH ROUTES 
 app.use("/auth",authRoutes);
 
